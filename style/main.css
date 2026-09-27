@@ -239,7 +239,7 @@ input[type=range]::-ms-fill-upper {
 }
 
 /* =============================================================================
-   1. БАЗОВАЯ НАСТРОЙКА КОНТЕЙНЕРОВ ДВИЖКА (Защита от полос и рамок)
+   ЧИСТАЯ НАСТРОЙКА ЭКРАНОВ И СЛОЕВ (БЕЗ ПАРАЛЛАКСА)
    ============================================================================= */
 [data-screen="game"],
 images-screen,
@@ -251,58 +251,14 @@ images-screen,
     right: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    overflow: hidden !important; /* Удерживает картинки в рамках пропорции экрана */
+    overflow: hidden !important;
 }
 
-/* =============================================================================
-   2. БАЗОВОЕ ПОВЕДЕНИЕ СЛОЕВ (Общие свойства для _back и _front)
-   ============================================================================= */
+/* Все изображения игры просто плавно подстраиваются под экран */
 [data-screen="game"] [data-image] {
     position: absolute !important;
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important; /* Заставляет картинку заполнять весь холст */
-    object-position: center center !important; /* Дефолтное центрирование */
-}
-
-/* =============================================================================
-   3. ИНДИВИДУАЛЬНАЯ ПРИВЯЗКА СЛОЕВ И АНИМАЦИЙ
-   ============================================================================= */
-
-/* Задний план */
-[data-screen="game"] [data-image*="_back"] {
-    scale: 1.10 !important; /* Запас масштаба для скрытия краев при покачивании */
-    animation: backIdleShake 6s ease-in-out infinite !important;
-    transform-origin: center center !important;
-    z-index: 1 !important;
-}
-
-/* Передний план */
-[data-screen="game"] [data-image*="_front"] {
-	object-position: calc(50% - 80px) calc(50% + 280px) !important;
-    scale: 1.50 !important; /* Запас масштаба для скрытия краев при покачивании */
-    animation: frontParallaxShake 4s ease-in-out infinite !important;
-    transform-origin: center center !important;
-    z-index: 2 !important; /* Персонаж ложится строго поверх задника */
-}
-
-/* =============================================================================
-   4. ЛОГИКА ТРАЕКТОРИЙ ПОКАЧИВАНИЯ (КЕЙФРЕЙМЫ)
-   ============================================================================= */
-
-/* Траектория для задника (сделай её более плавной и мелкой) */
-@keyframes backIdleShake {
-    0%   { transform: translate(0px, 0px) rotate(0deg); }
-    25%  { transform: translate(-2px, 2px) rotate(-0.1deg); }
-    50%  { transform: translate(-3px, -1px) rotate(0.1deg); }
-    75%  { transform: translate(1px, 3px) rotate(0deg); }
-    100% { transform: translate(0px, 0px) rotate(0deg); }
-}
-
-/* Траектория для фронта (сделай амплитуду больше / скорость выше для параллакса) */
-@keyframes frontParallaxShake {
-    0%   { transform: translate(0px, 0px) rotate(0deg); }
-    30%  { transform: translate(-5px, 3px) rotate(-0.2deg); }
-    60%  { transform: translate(3px, -4px) rotate(0.2deg); }
-    100% { transform: translate(0px, 0px) rotate(0deg); }
+    object-fit: cover !important;
+    object-position: center center !important;
 }
