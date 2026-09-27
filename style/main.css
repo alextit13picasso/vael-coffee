@@ -237,3 +237,40 @@ input[type=range]::-ms-fill-upper {
 @media screen and (min-width: 500em) {
 
 }
+
+/* Плавное покачивание всей камеры (двух слоев одновременно) */
+@keyframes idleCameraShake {
+    0%   { transform: translate(0px, 0px) rotate(0deg); }
+    20%  { transform: translate(-4px, 3px) rotate(-0.2deg); }
+    40%  { transform: translate(-6px, -2px) rotate(0.2deg); }
+    60%  { transform: translate(3px, 5px) rotate(0deg); }
+    80%  { transform: translate(-3px, -3px) rotate(-0.2deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* Шаг 1: Возвращаем жесткие границы родительским контейнерам, чтобы скрыть белую подложку */
+[data-screen="game"],
+images-screen,
+[data-component="image-container"],
+[data-screen="images"] {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important; /* Железно прячет белые системные поля движка */
+}
+
+/* Шаг 2: Возвращаем качание и увеличиваем масштаб картинок для компенсации сдвигов */
+[data-screen="game"] [data-image] {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    
+    /* Увеличиваем зум до 1.15 (15%). Теперь при качании картинка никогда не оголит край контейнера */
+    scale: 1.15 !important; 
+    animation: idleCameraShake 5s ease-in-out infinite !important;
+    transform-origin: center center !important;
+}
