@@ -241,24 +241,35 @@ input[type=range]::-ms-fill-upper {
 /* =============================================================================
    ЧИСТАЯ НАСТРОЙКА ЭКРАНОВ И СЛОЕВ (БЕЗ ПАРАЛЛАКСА)
    ============================================================================= */
-[data-screen="game"],
-images-screen,
-[data-component="image-container"],
-[data-screen="images"] {
-    margin: 0 auto !important;
-    padding: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    overflow: hidden !important;
-}
-
-/* Все изображения игры просто плавно подстраиваются под экран */
-[data-screen="game"] [data-image] {
+[data-screen="game"] [data-image*="_back"] {
     position: absolute !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: center center !important;
+    
+    /* Задник держим строго по центру, чтобы он не улетал */
+    object-position: center center !important; 
+    
+    /* Небольшой запас по размеру */
+    scale: 1.10 !important; 
+    z-index: 1 !important; /* Уходит на самый нижний слой */
 }
+
+/* ПЕРЕДНИЙ ПЛАН (Персонаж в шляпе) */
+[data-screen="game"] [data-image*="_front"] {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    
+    /* Твой пиксельный сдвиг влево и вниз */
+    object-position: calc(50% - 120px) calc(50% + 280px) !important;
+    
+    /* ТОЧКАПРИВЯЗКИ: Фиксирует левый край, чтобы справа не вылезала пустота */
+    transform-origin: left center !important;
+    
+    /* Повышенный масштаб для компенсации сдвига */
+    scale: 1.50 !important; 
+    z-index: 2 !important;
+}
+
