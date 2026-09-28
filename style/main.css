@@ -479,30 +479,21 @@ input[type=range]::-ms-fill-upper {}
 /* =============================================================================
    ФИНАЛЬНАЯ КНОПКА "ДАЛЕЕ" (ПОСТОЯННЫЙ НАСЫЩЕННЫЙ ЦВЕТ И ГЛУБОКОЕ СВЕЧЕНИЕ)
    ============================================================================= */
-/* =============================================================================
-   ФИНАЛЬНАЯ КНОПКА "ДАЛЕЕ" С ИДЕАЛЬНОЙ СИММЕТРИЕЙ ОТСТУПОВ (40px)
-   ============================================================================= */
-/* =============================================================================
-   ФИНАЛЬНАЯ КНОПКА "ДАЛЕЕ" С ТОЧНЫМИ УМЕНЬШЕННЫМИ ОТСТУПАМИ (25px)
-   ============================================================================= */
-
 #custom-text-next-btn {
     position: absolute !important;
     bottom: 0 !important;
     left: 0 !important;
     margin: 0 !important;
     
-    /* Делаем зону клика компактнее по высоте, чтобы не лезла вверх */
     width: 100% !important;
     height: 50px !important; 
     background: transparent !important; 
     
     display: flex !important;
-    justify-content: flex-end !important; /* Прижимаем строго к правому краю */
-    align-items: flex-end !important;    /* Прижимаем строго к нижнему краю */
+    justify-content: flex-end !important; 
+    align-items: flex-end !important;    
     box-sizing: border-box !important;
     
-    /* Зажимаем точные аккуратные отступы под границы твоего текстового блока */
     padding-right: 25px !important;  
     padding-bottom: 25px !important; 
 
@@ -517,7 +508,12 @@ input[type=range]::-ms-fill-upper {}
     border: none !important;
     box-shadow: none !important;
     cursor: pointer !important;
+    
+    /* УБИРАЕМ СИНЕЕ СВЕЧЕНИЕ И КОНТУРЫ ПРИ КЛИКЕ И ФОКУСЕ */
     outline: none !important;
+    -webkit-tap-highlight-color: transparent !important; /* Для Chrome/Safari на мобилках */
+    -webkit-focus-ring-color: transparent !important;
+    
     z-index: 99999 !important;
     pointer-events: auto !important;
     text-shadow: 0 0 12px rgba(201, 191, 179, 0.6) !important;
@@ -525,7 +521,11 @@ input[type=range]::-ms-fill-upper {}
 
 /* Полная фиксация визуала без изменений при взаимодействиях */
 #custom-text-next-btn:hover,
-#custom-text-next-btn:active {
+#custom-text-next-btn:active,
+#custom-text-next-btn:focus {
     color: #C9BFB3 !important;
     text-shadow: 0 0 12px rgba(201, 191, 179, 0.6) !important;
+    outline: none !important;
+    background: transparent !important;
+    -webkit-tap-highlight-color: transparent !important;
 }
