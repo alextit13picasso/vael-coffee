@@ -30,44 +30,60 @@ window.camera = function(offsetX, offsetY, scalePercent) {
     };
 };
 
-// Цикл ультра-выразительного и глубокого покачивания
-// Цикл ультра-выразительного покачивания с исправленной базой персонажа
+// Цикл ультра-выразительного покачивания (ИГРА + ГЛАВНОЕ МЕНЮ)
 (function startGlobalCinemaCamera() {
     let time = 0;
 
     function updateCamera() {
         const state = window.cameraState;
 
-        // 1. Мягкий догон целевой точки параллакса
+        // 1. Мягкий догон целевой точки параллакса (для игрового процесса)
         state.currentX += (state.targetX - state.currentX) * state.lerpSpeed;
         state.currentY += (state.targetY - state.currentY) * state.lerpSpeed;
         state.currentScale += (state.targetScale - state.currentScale) * state.lerpSpeed;
 
-        // 2. Максимальная амплитуда покачивания (60px на 40px)
+        // 2. Размашистая амплитуда покачивания (60px на 40px)
         time += 0.012; 
         const swayX = Math.sin(time * 1.1) * 60;
         const swayY = Math.cos(time * 0.75) * 40;
 
-        // Итоговая позиция камеры
         const finalX = state.currentX + swayX;
         const finalY = state.currentY + swayY;
 
-        // 3. РЕНДЕР ПЕРЕДНЕГО ПЛАНА (Персонаж в шляпе)
+        // ==========================================
+        // ЧАСТЬ 1: ОЖИВЛЕНИЕ СТАРТОВОГО ЭКРАНА (МЕНЮ)
+        // ==========================================
+        const mainMenuScreen = document.querySelector('[data-screen="main"]');
+        if (mainMenuScreen) {
+            /* 
+               Поскольку фон главного меню задан через CSS background-image,
+               мы плавно качаем его позицию на 20% (как и бэкграунд в игре)
+            */
+            const menuBackX = finalX * 0.2;
+            const menuBackY = finalY * 0.2;
+            
+            // Смещаем фоновую позицию относительно стандартного центра (50% 50%)
+            mainMenuScreen.style.setProperty(
+                'background-position', 
+                `calc(50% + ${menuBackX}px) calc(50% + ${menuBackY}px)`, 
+                'important'
+            );
+        }
+
+        // ==========================================
+        // ЧАСТЬ 2: ОЖИВЛЕНИЕ ИГРОВОГО ПРОЦЕССА
+        // ==========================================
+        // Рендер переднего плана (Персонаж в шляпе)
         const frontImg = document.querySelector('[data-screen="game"] [data-image*="_front"]');
         if (frontImg) {
-            /* 
-               МАТЕМАТИЧЕСКАЯ КОРРЕКЦИЯ БАЗЫ:
-               - Было -160px по X (уводило влево). Стало -60px, что сдвигает героя в два раза ПРАВЕЕ.
-               - Было +480px по Y (уводило вниз). Стало +240px, что поднимает героя в два раза ВЫШЕ.
-            */
-            const targetX = `calc(50% - 100px + ${finalX}px)`;
-            const targetY = `calc(50% + 390px + ${finalY}px)`;
+            const targetX = `calc(50% - 60px + ${finalX}px)`;
+            const targetY = `calc(50% + 340px + ${finalY}px)`;
             
             frontImg.style.setProperty('object-position', `${targetX} ${targetY}`, 'important');
             frontImg.style.setProperty('transform', `scale(${state.currentScale / 100})`, 'important');
         }
 
-        // 4. Рендер заднего плана (Фон с 20% параллаксом)
+        // Рендер заднего плана (Фон сцены)
         const backImg = document.querySelector('[data-screen="game"] [data-image*="_back"]');
         if (backImg) {
             const backX = finalX * 0.2;
@@ -83,6 +99,7 @@ window.camera = function(offsetX, offsetY, scalePercent) {
         requestAnimationFrame(updateCamera);
     });
 })();
+
 
 monogatari.script ({
 	// Точка входа в игру

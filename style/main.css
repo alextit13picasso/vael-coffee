@@ -51,15 +51,10 @@
    ИДЕАЛЬНЫЙ СТАРТОВЫЙ ЭКРАН ДЛЯ ВСЕХ УСТРОЙСТВ (И ПК, И МОБИЛКИ)
    ============================================================================= */
 
-/* Масштабируем и центрируем фон, чтобы скрыть рамки/артефакты пленки */
-[data-screen="main"] {
-    background-color: #000000 !important;
-    background-image: url('../assets/images/start_screen_back.png') !important; 
-    
-    /* object-fit аналог для бэкграунда с жестким скейлом 110% */
-    background-size: 110% auto !important; 
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
+@media screen and (max-aspect-ratio: 9/16) {
+    [data-screen="main"] {
+        background-size: auto 125% !important;
+    }
 }
 
 /* Дополнительный фикс: если экран слишком вытянутый, фон не должен оголять края */
@@ -334,9 +329,11 @@ input[type=range]::-ms-fill-upper {}
     
     /* Подключаем фоновое изображение из папки assets/images/ */
     background-image: url('../assets/images/start_screen_back.png') !important; 
-    background-size: cover !important;        /* Растягивает арт на весь экран смартфона */
     background-position: center center !important; /* Центрирует картинку */
     background-repeat: no-repeat !important;
+    
+    /* object-fit аналог для бэкграунда с жестким скейлом 110% */
+    background-size: 125% auto !important; 
 }
 
 /* 2. ЖЕСТКО ВЫРЕЗАЕМ ВСЕ ЛИШНИЕ КНОПКИ (Загрузить, Настройки, Помощь) */
