@@ -42,39 +42,21 @@ $_ready(() => {
 			});
 		}
 
-		// === ЖЕЛЕЗНЫЙ ИНЖЕКТОР ФИНАЛЬНОЙ КНОПКИ В КОРЕНЬ ===
-		const gameContainer = document.getElementById('monogatari');
-		if (gameContainer) {
-			const btn = document.createElement('button');
-			btn.id = 'custom-final-boosty-btn';
-
-			// ВНИМАНИЕ: Сверь имя файла в папке assets/images/. 
-			// Если он называется final_button.PNG (капсом) — измени расширение в коде ниже!
-			btn.innerHTML = '<img src="assets/images/final_butoon.webp" alt="" style="display:block; width:100%; height:100%;">';
-
-			gameContainer.appendChild(btn);
-
-			btn.addEventListener('click', (event) => {
-				event.stopPropagation();
-				if (window.parent && window.parent.postMessage) {
-					window.sendVaelGoal('click_join_private_club'); 
-				}
-				window.open('https://boosty.to/vael', '_blank');
-			});
-		}
-
+				// === ЖЕЛЕЗНЫЙ ИНЖЕКТОР ФИНАЛЬНОЙ КНОПКИ В КОРЕНЬ ===
 		const finalBoostyBtn = document.getElementById('custom-final-boosty-btn');
 		if (finalBoostyBtn) {
+			// Навешиваем только ОДИН слушатель клика
 			finalBoostyBtn.addEventListener('click', (event) => {
-				event.stopPropagation();
+				event.stopPropagation(); // Останавливаем всплытие события в движке
+				
 				console.log("🖱️ [ФИНАЛ] Нажата центральная кнопка. Переход на Boosty...");
 
-				// Отправляем итоговую метрику в Tilda
-				if (window.parent && window.parent.postMessage) {
+				// 1. Отправляем финальную метрику вступления в клуб (СТРОГО ОДИН РАЗ)
+				if (typeof window.sendVaelGoal === 'function') {
 					window.sendVaelGoal('click_join_private_club');
 				}
 
-				// Открываем твой Boosty
+				// 2. Открываем твою прямую ссылку на Boosty
 				window.open('https://boosty.to/vael', '_blank');
 			});
 		}
