@@ -28,11 +28,51 @@ const { $_ready, $_ } = Monogatari;
 
 monogatari.debug.level(5);
 
-$_ready (() => {
+$_ready(() => {
 	// 2. Inside the $_ready function:
 
-	monogatari.init ('#monogatari').then (() => {
+	monogatari.init('#monogatari').then(() => {
 		// 3. Inside the init function:
+
+
+		console.log("🚀 [ПАНДОРА-АВТОМАТ] Активация сквозного слежения за плеерами...");
+
+		let advanceTimer = null;
+
+		// 1. Перехватываем метод получения медиаплеера в Monogatari
+		const originalMediaPlayer = monogatari.mediaPlayer;
+
+		monogatari.mediaPlayer = function (type, asset, ...args) {
+			// Вызываем оригинальный метод, чтобы движок выдал нам инстанс плеера
+			const player = originalMediaPlayer.call(monogatari, type, asset, ...args);
+
+			// Если движок запрашивает плеер для канала "sound"
+			if (type === 'sound' && player) {
+				console.log(`🎯 [ПАНДОРА] Поймали инициализацию звука для ассета: "${asset}"`);
+
+				// На всякий случай сбрасываем старый таймер автоперехода
+				if (advanceTimer) clearTimeout(advanceTimer);
+
+				// Ждем микросекунду, чтобы плеер успел стартануть в памяти
+				setTimeout(() => {
+					// Достаем длительность аудиофайла из внутренних свойств Howler (он спрятан внутри плеера)
+					const duration = player._duration || (typeof player.duration === 'function' ? player.duration() : player.duration);
+					console.log(`⏱️ [ПАНДОРА ТАЙМИНГ] Файл "${asset}" длится: ${duration} сек.`);
+
+					if (duration && duration > 0) {
+						const totalWaitTime = (duration + 0.3) * 1000; // Длина mp3 + 300мс пауза
+						console.log(`🎯 [ПАНДОРА ТАЙМЕР] Заводим автоматический клик через ${totalWaitTime} мс.`);
+
+						advanceTimer = setTimeout(() => {
+							console.log("⚡ [ПАНДОРА КЛИК] Время вышло! Продвигаем сцену вперед...");
+							monogatari.proceed();
+						}, totalWaitTime);
+					}
+				}, 10);
+			}
+
+			return player;
+		};
 
 	});
 });
