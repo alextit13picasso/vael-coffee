@@ -336,3 +336,34 @@ input[type=range]::-ms-fill-upper {}
     transition: object-position 2.5s ease-in-out, transform 2.5s ease-in-out !important;
     will-change: object-position, transform !important;
 }
+/* ЗАДНИЙ ПЛАН (Плавный параллакс через GPU) */
+[data-screen="game"] [data-image*="_back"] {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important; 
+    z-index: 1 !important;
+    
+    transform-origin: center center !important;
+
+    /* Плавность фона завязана на transform */
+    transition: transform 2.5s ease-in-out !important;
+    will-change: transform !important; 
+}
+
+/* ПЕРЕДНИЙ ПЛАН (Персонаж в шляпе — БЕЗ ОБРЕЗОК) */
+[data-screen="game"] [data-image*="_front"] {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: 2 !important;
+
+    /* Возвращаем твою родную привязку, чтобы левый край не резался */
+    transform-origin: left bottom !important;
+
+    /* Плавность персонажа переносим на object-position и transform */
+    transition: object-position 2.5s ease-in-out, transform 2.5s ease-in-out !important;
+    will-change: object-position, transform !important;
+}
