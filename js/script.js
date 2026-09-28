@@ -580,35 +580,35 @@ monogatari.assets ('sounds', {
 // Регистрируем слои картинок (ищутся в assets/images/)
 monogatari.assets ('images', {
 	// Сцена 1
-	'scene_1_front': 'scene_1_front.png',
-	'scene_1_back': 'scene_1_back.png',
+	'scene_1_front': 'scene_1_front.webp',
+	'scene_1_back': 'scene_1_back.webp',
 
 	// Сцена 2
-	'scene_2_front': 'scene_2_front.png',
-	'scene_2_back': 'scene_2_back.png',
+	'scene_2_front': 'scene_2_front.webp',
+	'scene_2_back': 'scene_2_back.webp',
 
     // Сцена 3
-	'scene_3_front': 'scene_3_front.png',
-	'scene_3_back': 'scene_3_back.png',
+	'scene_3_front': 'scene_3_front.webp',
+	'scene_3_back': 'scene_3_back.webp',
 
 	// Сцена 4
-	'scene_4_front': 'scene_4_front.png',
-	'scene_4_back': 'scene_4_back.png',
+	'scene_4_front': 'scene_4_front.webp',
+	'scene_4_back': 'scene_4_back.webp',
 
     // Сцена 5
-	'scene_5_front': 'scene_5_front.png',
-	'scene_5_back': 'scene_5_back.png',
+	'scene_5_front': 'scene_5_front.webp',
+	'scene_5_back': 'scene_5_back.webp',
 
 	// Сцена 6
-	'scene_6_front': 'scene_6_front.png',
-	'scene_6_back': 'scene_6_back.png',
+	'scene_6_front': 'scene_6_front.webp',
+	'scene_6_back': 'scene_6_back.webp',
 
     // Сцена 7
-	'scene_7_front': 'scene_7_front.png',
-	'scene_7_back': 'scene_7_back.png',
+	'scene_7_front': 'scene_7_front.webp',
+	'scene_7_back': 'scene_7_back.webp',
 
 	// Сцена Финал
-	'final_cover': 'final_scene_cover.png',
-	'final_button_asset': 'final_button.png',
+	'final_cover': 'final_scene_cover.webp',
+	'final_button_asset': 'final_button.webp',
 });
 

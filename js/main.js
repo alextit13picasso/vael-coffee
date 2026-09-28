@@ -40,7 +40,7 @@ $_ready(() => {
 
 			// ВНИМАНИЕ: Сверь имя файла в папке assets/images/. 
 			// Если он называется final_button.PNG (капсом) — измени расширение в коде ниже!
-			btn.innerHTML = '<img src="assets/images/final_butoon.png" alt="" style="display:block; width:100%; height:100%;">';
+			btn.innerHTML = '<img src="assets/images/final_butoon.webp" alt="" style="display:block; width:100%; height:100%;">';
 
 			gameContainer.appendChild(btn);
 

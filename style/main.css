@@ -92,7 +92,7 @@
     height: 240px !important; 
     max-width: 80% !important; /* Безопасный размер под узкие экраны смартфонов */
     
-    background-image: url('../assets/images/start_button.png') !important; 
+    background-image: url('../assets/images/start_button.webp') !important; 
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -328,7 +328,7 @@ input[type=range]::-ms-fill-upper {}
     background-color: #000000 !important;
     
     /* Подключаем фоновое изображение из папки assets/images/ */
-    background-image: url('../assets/images/start_screen_back.png') !important; 
+    background-image: url('../assets/images/start_screen_back.webp') !important; 
     background-position: center center !important; /* Центрирует картинку */
     background-repeat: no-repeat !important;
     
@@ -373,7 +373,7 @@ input[type=range]::-ms-fill-upper {}
     max-width: 85% !important; 
     
     /* Картинка старта из assets/images/ */
-    background-image: url('../assets/images/start_button.png') !important; 
+    background-image: url('../assets/images/start_button.webp') !important; 
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -447,7 +447,7 @@ input[type=range]::-ms-fill-upper {}
     width: 300px !important;
     height: 120px !important;
     
-    background-image: url('../assets/images/read_more_button.png') !important;
+    background-image: url('../assets/images/read_more_button.webp') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
