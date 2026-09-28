@@ -7,34 +7,80 @@ monogatari.characters ({
     }
 });
 
-// ГИБРИДНАЯ СИСТЕМА КАМЕРЫ: ОПТИМИЗАЦИЯ СЛОЕВ И ПАРАЛЛАКС 20%
+// Глобальное состояние камеры с раздельными текущими и целевыми координатами
+window.cameraState = {
+    currentX: 0,
+    currentY: 0,
+    currentScale: 100,
+
+    targetX: 0,
+    targetY: 0,
+    targetScale: 100,
+
+    // Скорость плавного догона базы при смене блоков
+    lerpSpeed: 0.04 
+};
+
 window.camera = function(offsetX, offsetY, scalePercent) {
     return function() {
-        // 1. Управление передним планом (Двигаем через object-position относительно твоей базы)
-        const frontImg = document.querySelector('[data-screen="game"] [data-image*="_front"]');
-        if (frontImg) {
-            const targetX = `calc(50% - 120px + ${offsetX}px)`;
-            const targetY = `calc(50% + 380px + ${offsetY}px)`;
-            
-            frontImg.style.setProperty('object-position', `${targetX} ${targetY}`, 'important');
-            frontImg.style.setProperty('transform', `scale(${scalePercent / 100})`, 'important');
-        }
-
-        // 2. Управление задним планом (Ультра-плавный 20% параллакс через GPU)
-        const backImg = document.querySelector('[data-screen="game"] [data-image*="_back"]');
-        if (backImg) {
-            // Рассчитываем мощный 20% сдвиг фона
-            const backX = offsetX * 0.2;
-            const backY = offsetY * 0.2;
-            
-            /* Жестко держим масштаб 1.12 для бэка, чтобы при сильном 20% сдвиге 
-               не вылезали черные полосы по краям */
-            backImg.style.setProperty('transform', `scale(1.12) translate(${backX}px, ${backY}px)`, 'important');
-        }
-
+        window.cameraState.targetX = offsetX;
+        window.cameraState.targetY = offsetY;
+        window.cameraState.targetScale = scalePercent;
         return true;
     };
 };
+
+// Цикл ультра-выразительного и глубокого покачивания
+(function startGlobalCinemaCamera() {
+    let time = 0;
+
+    function updateCamera() {
+        const state = window.cameraState;
+
+        // 1. Мягкий догон целевой точки параллакса (сглаживает переходы между блоками)
+        state.currentX += (state.targetX - state.currentX) * state.lerpSpeed;
+        state.currentY += (state.targetY - state.currentY) * state.lerpSpeed;
+        state.currentScale += (state.targetScale - state.currentScale) * state.lerpSpeed;
+
+        // 2. МАКСИМАЛЬНАЯ АМПЛИТУДА ПОКАЧИВАНИЯ
+        // Слегка скорректировали скорость (0.012), чтобы при большом размахе камеру не укачивало слишком быстро
+        time += 0.012; 
+        
+        // Ультра-размах: 60px вправо-влево и 40px вверх-вниз
+        const swayX = Math.sin(time * 1.1) * 60;
+        const swayY = Math.cos(time * 0.75) * 40;
+
+        // Итоговая позиция камеры
+        const finalX = state.currentX + swayX;
+        const finalY = state.currentY + swayY;
+
+        // 3. Рендер переднего плана (Персонаж в шляпе)
+        const frontImg = document.querySelector('[data-screen="game"] [data-image*="_front"]');
+        if (frontImg) {
+            const targetX = `calc(50% - 160px + ${finalX}px)`;
+            const targetY = `calc(50% + 480px + ${finalY}px)`;
+            
+            frontImg.style.setProperty('object-position', `${targetX} ${targetY}`, 'important');
+            frontImg.style.setProperty('transform', `scale(${state.currentScale / 100})`, 'important');
+        }
+
+        // 4. Рендер заднего плана (Фон с 20% параллаксом)
+        const backImg = document.querySelector('[data-screen="game"] [data-image*="_back"]');
+        if (backImg) {
+            const backX = finalX * 0.2;
+            const backY = finalY * 0.2;
+            
+            // ВНИМАНИЕ: Подняли scale до 1.25, чтобы компенсировать мощный сдвиг в 60px и скрыть края
+            backImg.style.setProperty('transform', `scale(1.25) translate(${backX}px, ${backY}px)`, 'important');
+        }
+
+        requestAnimationFrame(updateCamera);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        requestAnimationFrame(updateCamera);
+    });
+})();
 
 monogatari.script ({
 	// Точка входа в игру

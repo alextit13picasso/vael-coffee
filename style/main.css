@@ -413,7 +413,7 @@ input[type=range]::-ms-fill-upper {}
     transform-origin: center center !important;
 
     /* Плавность фона завязана на transform */
-    transition: transform 2.5s ease-in-out !important;
+    transition: transform 0.1s ease-in-out !important;
     will-change: transform !important; 
 }
 
@@ -429,7 +429,7 @@ input[type=range]::-ms-fill-upper {}
     transform-origin: left bottom !important;
 
     /* Плавность персонажа переносим на object-position и transform */
-    transition: object-position 2.5s ease-in-out, transform 2.5s ease-in-out !important;
+    transition: object-position 0.2s ease-in-out, transform 0.1s ease-in-out !important;
     will-change: object-position, transform !important;
 
 	object-position: calc(50% - 160px) calc(50% + 480px) !important;
