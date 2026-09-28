@@ -31,22 +31,20 @@ window.camera = function(offsetX, offsetY, scalePercent) {
 };
 
 // Цикл ультра-выразительного и глубокого покачивания
+// Цикл ультра-выразительного покачивания с исправленной базой персонажа
 (function startGlobalCinemaCamera() {
     let time = 0;
 
     function updateCamera() {
         const state = window.cameraState;
 
-        // 1. Мягкий догон целевой точки параллакса (сглаживает переходы между блоками)
+        // 1. Мягкий догон целевой точки параллакса
         state.currentX += (state.targetX - state.currentX) * state.lerpSpeed;
         state.currentY += (state.targetY - state.currentY) * state.lerpSpeed;
         state.currentScale += (state.targetScale - state.currentScale) * state.lerpSpeed;
 
-        // 2. МАКСИМАЛЬНАЯ АМПЛИТУДА ПОКАЧИВАНИЯ
-        // Слегка скорректировали скорость (0.012), чтобы при большом размахе камеру не укачивало слишком быстро
+        // 2. Максимальная амплитуда покачивания (60px на 40px)
         time += 0.012; 
-        
-        // Ультра-размах: 60px вправо-влево и 40px вверх-вниз
         const swayX = Math.sin(time * 1.1) * 60;
         const swayY = Math.cos(time * 0.75) * 40;
 
@@ -54,11 +52,16 @@ window.camera = function(offsetX, offsetY, scalePercent) {
         const finalX = state.currentX + swayX;
         const finalY = state.currentY + swayY;
 
-        // 3. Рендер переднего плана (Персонаж в шляпе)
+        // 3. РЕНДЕР ПЕРЕДНЕГО ПЛАНА (Персонаж в шляпе)
         const frontImg = document.querySelector('[data-screen="game"] [data-image*="_front"]');
         if (frontImg) {
-            const targetX = `calc(50% - 160px + ${finalX}px)`;
-            const targetY = `calc(50% + 480px + ${finalY}px)`;
+            /* 
+               МАТЕМАТИЧЕСКАЯ КОРРЕКЦИЯ БАЗЫ:
+               - Было -160px по X (уводило влево). Стало -60px, что сдвигает героя в два раза ПРАВЕЕ.
+               - Было +480px по Y (уводило вниз). Стало +240px, что поднимает героя в два раза ВЫШЕ.
+            */
+            const targetX = `calc(50% - 100px + ${finalX}px)`;
+            const targetY = `calc(50% + 390px + ${finalY}px)`;
             
             frontImg.style.setProperty('object-position', `${targetX} ${targetY}`, 'important');
             frontImg.style.setProperty('transform', `scale(${state.currentScale / 100})`, 'important');
@@ -70,7 +73,6 @@ window.camera = function(offsetX, offsetY, scalePercent) {
             const backX = finalX * 0.2;
             const backY = finalY * 0.2;
             
-            // ВНИМАНИЕ: Подняли scale до 1.25, чтобы компенсировать мощный сдвиг в 60px и скрыть края
             backImg.style.setProperty('transform', `scale(1.25) translate(${backX}px, ${backY}px)`, 'important');
         }
 
