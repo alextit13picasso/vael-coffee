@@ -603,3 +603,22 @@ body.in-final-scene #custom-read-more-btn {
     height: 100% !important;
 }
 
+/* ЖЕЛЕЗОБЕТОННЫЙ РАСПОР ДЛЯ ИГРОВОГО ЭКРАНА */
+[data-screen="game"], 
+.game-screen {
+    /* Насильно делаем экран чуть шире фрейма Tilda/Iframe */
+    width: 102% !important; 
+    max-width: 102% !important;
+    min-width: 102% !important;
+
+    /* Смещаем его слегка влево, чтобы правый бок залез с запасом */
+    left: -1% !important; 
+    
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Фикс для самого корня отображения */
+#monogatari {
+    background-color: transparent !important;
+}
