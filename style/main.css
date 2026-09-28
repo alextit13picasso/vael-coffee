@@ -194,10 +194,12 @@ input[type=range]::-ms-fill-upper {}
     object-fit: cover !important;
     
     /* Твой пиксельный сдвиг влево и вниз */
-    object-position: calc(50% - 120px) calc(50% + 380px) !important;
+    object-position: calc(50% - 160px) calc(50% + 480px) !important;
     
     /* ТОЧКАПРИВЯЗКИ: Фиксирует левый край, чтобы справа не вылезала пустота */
     transform-origin: center center !important;
+
+	scale: 0.8;
     
     /* Повышенный масштаб для компенсации сдвига */
     z-index: 2 !important;
