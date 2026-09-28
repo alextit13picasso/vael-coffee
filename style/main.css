@@ -312,3 +312,10 @@ input[type=range]::-ms-fill-upper {}
 [data-screen="main"] button[data-action="start"]:active {
     transform: scale(0.95) !important;
 }
+
+/* Вытаскиваем черную шторку поверх слоя с дождем */
+[data-component="shadow-layer"], 
+.shadow-layer,
+[data-ui="transition"] {
+    z-index: 5 !important;
+}

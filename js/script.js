@@ -10,11 +10,17 @@ monogatari.characters ({
 monogatari.script ({
 	// Точка входа в игру
 	'Start': [
+		function () {
+			// Если игрок начинает заново — гарантированно включаем дождь обратно
+			const canvas = document.getElementById('rainCanvas');
+			if (canvas) canvas.style.display = 'block';
+			return true;
+		},
 		'play music ambient_scene1 loop', 
 		'show image scene_1_back with fadeIn', 
 		'show image scene_1_front with fadeIn', 
 		'wait 3000',                      
-		'jump scene_1' // Переход на scene_1, где команды идут строго через запятую
+		'jump scene_1'
 	],
 
 	// --- СЦЕНА 1 ---
@@ -289,6 +295,16 @@ monogatari.script ({
 		'show image scene_7_back with fadeIn',
 		'show image scene_7_front with fadeIn',
 
+		function () {
+			/* ЖЕЛЕЗОБЕТОННЫЙ ВЫКЛЮЧАТЕЛЬ: 
+			   Находим холст дождя по ID и полностью скрываем его из видимости */
+			const canvas = document.getElementById('rainCanvas');
+			if (canvas) {
+				canvas.style.display = 'none';
+			}
+			return true; // Важно вернуть true, чтобы Monogatari пошел дальше по сценарию
+		},
+
         'stop music',
 		'play music ambient_scene7 loop',
         'stop sound',
@@ -307,7 +323,6 @@ monogatari.script ({
 		'play sound scene_7_block_4',
 		'h Принесли кофе.',
 
-        // Отправка веб-аналитики Яндекса перед уходом в финал
 		function () {
 			if (window.parent && window.parent.postMessage) {
 				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_7' }, '*');
@@ -315,9 +330,9 @@ monogatari.script ({
 			return true;
 		},
 
-		'show scene #000000 with fadeIn', // Затемнение экрана
+		'show scene #000000 with fadeIn',
 		'wait 2000',
-		'end' // Конец первой новеллы
+		'end'
 	],
 });
 
