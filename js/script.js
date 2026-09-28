@@ -511,7 +511,7 @@ monogatari.script ({
         'stop music',
 		'stop sound',
         
-        // 3. Запускаем финальный эмбиент Scene_7.mp3 по кругу
+        // 3. Запускаем финальный эмбиент Scene_7.ogg по кругу
         'play music ambient_scene7 loop',
         
         // 4. Мягко выводим финальный арт на весь экран
@@ -524,66 +524,66 @@ monogatari.script ({
 
 
 monogatari.assets ('music', {
-	'ambient_scene1': 'Scene_1.mp3',
-	'ambient_scene2': 'Scene_2.mp3',
-	'ambient_scene3': 'Scene_3.mp3',
-    'ambient_scene4': 'Scene_4.mp3',
-    'ambient_scene5': 'Scene_5.mp3',
-    'ambient_scene6': 'Scene_6.mp3',
-    'ambient_scene7': 'Scene_7.mp3'
+	'ambient_scene1': 'Scene_1.ogg',
+	'ambient_scene2': 'Scene_2.ogg',
+	'ambient_scene3': 'Scene_3.ogg',
+    'ambient_scene4': 'Scene_4.ogg',
+    'ambient_scene5': 'Scene_5.ogg',
+    'ambient_scene6': 'Scene_6.ogg',
+    'ambient_scene7': 'Scene_7.ogg'
 });
 
 monogatari.assets ('sounds', {
-	'scene_1_block_1': 'scene_1_block_1.mp3',
-    'scene_1_block_2': 'scene_1_block_2.mp3',
-    'scene_1_block_3': 'scene_1_block_3.mp3',
-    'scene_1_block_4': 'scene_1_block_4.mp3',
-    'scene_1_block_5': 'scene_1_block_5.mp3',
+	'scene_1_block_1': 'scene_1_block_1.ogg',
+    'scene_1_block_2': 'scene_1_block_2.ogg',
+    'scene_1_block_3': 'scene_1_block_3.ogg',
+    'scene_1_block_4': 'scene_1_block_4.ogg',
+    'scene_1_block_5': 'scene_1_block_5.ogg',
 
-    'scene_2_block_1': 'scene_2_block_1.mp3',
-    'scene_2_block_2': 'scene_2_block_2.mp3',
-    'scene_2_block_3': 'scene_2_block_3.mp3',
-    'scene_2_block_4': 'scene_2_block_4.mp3',
-    'scene_2_block_5': 'scene_2_block_5.mp3',
-    'scene_2_block_6': 'scene_2_block_6.mp3',
-    'scene_2_block_7': 'scene_2_block_7.mp3',
+    'scene_2_block_1': 'scene_2_block_1.ogg',
+    'scene_2_block_2': 'scene_2_block_2.ogg',
+    'scene_2_block_3': 'scene_2_block_3.ogg',
+    'scene_2_block_4': 'scene_2_block_4.ogg',
+    'scene_2_block_5': 'scene_2_block_5.ogg',
+    'scene_2_block_6': 'scene_2_block_6.ogg',
+    'scene_2_block_7': 'scene_2_block_7.ogg',
 
-    'scene_3_block_1': 'scene_3_block_1.mp3',
-    'scene_3_block_2': 'scene_3_block_2.mp3',
-    'scene_3_block_3': 'scene_3_block_3.mp3',
-    'scene_3_block_4': 'scene_3_block_4.mp3',
-    'scene_3_block_5': 'scene_3_block_5.mp3',
-    'scene_3_block_6': 'scene_3_block_6.mp3',
-    'scene_3_block_7': 'scene_3_block_7.mp3',
-    'scene_3_block_8': 'scene_3_block_8.mp3',
-    'scene_3_block_9': 'scene_3_block_9.mp3',
+    'scene_3_block_1': 'scene_3_block_1.ogg',
+    'scene_3_block_2': 'scene_3_block_2.ogg',
+    'scene_3_block_3': 'scene_3_block_3.ogg',
+    'scene_3_block_4': 'scene_3_block_4.ogg',
+    'scene_3_block_5': 'scene_3_block_5.ogg',
+    'scene_3_block_6': 'scene_3_block_6.ogg',
+    'scene_3_block_7': 'scene_3_block_7.ogg',
+    'scene_3_block_8': 'scene_3_block_8.ogg',
+    'scene_3_block_9': 'scene_3_block_9.ogg',
 
-    'scene_4_block_1': 'scene_4_block_1.mp3',
-    'scene_4_block_2': 'scene_4_block_2.mp3',
-    'scene_4_block_3': 'scene_4_block_3.mp3',
-    'scene_4_block_4': 'scene_4_block_4.mp3',
-    'scene_4_block_5': 'scene_4_block_5.mp3',
+    'scene_4_block_1': 'scene_4_block_1.ogg',
+    'scene_4_block_2': 'scene_4_block_2.ogg',
+    'scene_4_block_3': 'scene_4_block_3.ogg',
+    'scene_4_block_4': 'scene_4_block_4.ogg',
+    'scene_4_block_5': 'scene_4_block_5.ogg',
 
-    'scene_5_block_1': 'scene_5_block_1.mp3',
-    'scene_5_block_2': 'scene_5_block_2.mp3',
-    'scene_5_block_3': 'scene_5_block_3.mp3',
-    'scene_5_block_4': 'scene_5_block_4.mp3',
-    'scene_5_block_5': 'scene_5_block_5.mp3',
-    'scene_5_block_6': 'scene_5_block_6.mp3',
-    'scene_5_block_7': 'scene_5_block_7.mp3',
-    'scene_5_block_8': 'scene_5_block_8.mp3',
+    'scene_5_block_1': 'scene_5_block_1.ogg',
+    'scene_5_block_2': 'scene_5_block_2.ogg',
+    'scene_5_block_3': 'scene_5_block_3.ogg',
+    'scene_5_block_4': 'scene_5_block_4.ogg',
+    'scene_5_block_5': 'scene_5_block_5.ogg',
+    'scene_5_block_6': 'scene_5_block_6.ogg',
+    'scene_5_block_7': 'scene_5_block_7.ogg',
+    'scene_5_block_8': 'scene_5_block_8.ogg',
 
-    'scene_6_block_1': 'scene_6_block_1.mp3',
-    'scene_6_block_2': 'scene_6_block_2.mp3',
-    'scene_6_block_3': 'scene_6_block_3.mp3',
-    'scene_6_block_4': 'scene_6_block_4.mp3',
-    'scene_6_block_5': 'scene_6_block_5.mp3',
-    'scene_6_block_6': 'scene_6_block_6.mp3',
+    'scene_6_block_1': 'scene_6_block_1.ogg',
+    'scene_6_block_2': 'scene_6_block_2.ogg',
+    'scene_6_block_3': 'scene_6_block_3.ogg',
+    'scene_6_block_4': 'scene_6_block_4.ogg',
+    'scene_6_block_5': 'scene_6_block_5.ogg',
+    'scene_6_block_6': 'scene_6_block_6.ogg',
 
-    'scene_7_block_1': 'scene_7_block_1.mp3',
-    'scene_7_block_2': 'scene_7_block_2.mp3',
-    'scene_7_block_3': 'scene_7_block_3.mp3',
-    'scene_7_block_4': 'scene_7_block_4.mp3'
+    'scene_7_block_1': 'scene_7_block_1.ogg',
+    'scene_7_block_2': 'scene_7_block_2.ogg',
+    'scene_7_block_3': 'scene_7_block_3.ogg',
+    'scene_7_block_4': 'scene_7_block_4.ogg'
 });
 
 // Регистрируем слои картинок (ищутся в assets/images/)
