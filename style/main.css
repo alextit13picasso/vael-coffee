@@ -16,6 +16,7 @@
  * General Styling
  * ===========================
 **/
+@import url('https://googleapis.com');
 
 /* General Style */
 body {
@@ -213,22 +214,30 @@ input[type=range]::-ms-fill-upper {}
     flex-direction: column !important;
     justify-content: flex-end !important;
 
-    /* Выставляем новые увеличенные отступы */
-    padding-left: 2rem !important;   /* В 2 раза больше дефолтного 1rem */
-    padding-right: 2rem !important;  /* Симметричный правый отступ */
-    padding-bottom: 2rem !important; /* Нижний отступ равен левому */
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    padding-bottom: 2rem !important;
     box-sizing: border-box !important;
 }
 
-/* 2. КОРРЕКЦИЯ ВНУТРЕННЕГО БЛОКА С ТЕКСТОМ */
+/* 2. КОРРЕКЦИЯ ТЕКСТА, ЦВЕТА И ШРИФТА cormorant */
 [data-component="text-box"] [data-ui="say"] {
     margin-top: auto !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
-    
-    /* Сбрасываем внутренние отступы самого текстового поля, 
-       так как теперь за них отвечает родительский контейнер выше */
     padding: 0 !important;
     margin-bottom: 0 !important;
+
+    /* Новые стили оформления: */
+    font-family: 'Cormorant Garamond', serif !important;
+    color: #C9BFB3 !important; /* Твой благородный золотисто-оливковый цвет */
+    
+    /* Увеличение шрифта на 15%. Базовый в Monogatari обычно 1.25rem - 1.3rem. 
+       Сделаем 1.5rem, это даст идеальный прирост и сохранит читаемость на мобильных */
+    font-size: 1.2rem !important; 
+    line-height: 1.2 !important; /* Слегка увеличиваем межстрочный интервал для легкого чтения */
+    
+    /* Важно для эффекта печати: внутренний контейнер букв тоже должен наследовать цвет */
+    --text-color: #C9BFB3 !important; 
 }
