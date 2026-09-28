@@ -1,5 +1,19 @@
 // js/script.js
-// js/script.js
+
+// Функция-мост для прямой отправки целей в Яндекс.Метрику со счетчиком
+window.sendVaelGoal = function(goalId) {
+    const counterId = 112954462; // ВНИМАНИЕ: Поставь сюда номер своего счетчика вместо XXXXXX
+    
+    console.log(`📊 [АНАЛИТИКА] Попытка отправки цели: "${goalId}"`);
+    
+    if (typeof ym === 'function') {
+        ym(counterId, 'reachGoal', goalId);
+        console.log(`✅ [АНАЛИТИКА] Цель "${goalId}" успешно отправлена в Метрику.`);
+    } else {
+        console.warn(`⚠️ [АНАЛИТИКА] Счетчик Метрики не найден в index.html. Функция ym() недоступна.`);
+    }
+};
+
 monogatari.characters ({
     'h': {
         name: '',
@@ -142,11 +156,8 @@ monogatari.script ({
 		'play sound scene_1_block_5',
 		window.camera(35, 85, 105),
 		'h Но тяжесть эта не давила, напротив, было приятно и уютно чувствовать себя окутанным такой необыкновенной атмосферой.',
-
-        function () {
-			if (window.parent && window.parent.postMessage) {
-				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_1' }, '*');
-			}
+		function () {
+			window.sendVaelGoal('read_chapter_1');
 			return true;
 		},
 
@@ -199,9 +210,7 @@ monogatari.script ({
 		'h Полы моего пальто в тот же миг подались ветру, не в силах противостоять ему. Шляпа в общем-то тоже. Собрав все обратно, я вышел из узкого переулка и медленно зашагал по мокрому, широкому тротуару.',
 
         function () {
-			if (window.parent && window.parent.postMessage) {
-				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_2' }, '*');
-			}
+			window.sendVaelGoal('read_chapter_2');
 			return true;
 		},
 
@@ -263,9 +272,7 @@ monogatari.script ({
 		'h Такой оплошности водители, стоящие за ним, конечно же не могли ему простить: почти одновременно женщина из своего черного Рено и мужчина из такого же цвета то ли тоже Рено, то ли Фиата, то ли чего-то другого дали своему рассеянному попутчику понять с помощью клаксонов, что пора ехать.',
 		
         function () {
-			if (window.parent && window.parent.postMessage) {
-				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_3' }, '*');
-			}
+			window.sendVaelGoal('read_chapter_3');
 			return true;
 		},
 
@@ -307,9 +314,7 @@ monogatari.script ({
 		'h Я почувствовал что правый мой ботинок сдался и теперь там обосновалась вполне приличная влажность. Тут машин почти не было слышно и я четко стал отличать удары капель о мокрые листья и траву, тихое, убаюкивающее шуршание.',
 
         function () {
-			if (window.parent && window.parent.postMessage) {
-				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_4' }, '*');
-			}
+			window.sendVaelGoal('read_chapter_4');
 			return true;
 		},
 
@@ -366,9 +371,7 @@ monogatari.script ({
 		'h Она, в общем, решила уподобиться проходящим мимо людям и тоже, такое чувство что никуда не спешила, просто размеренно перелетала с дерева на дерево и оглядывалась, резко поворачивая голову то влево то вправо.',
 
         function () {
-			if (window.parent && window.parent.postMessage) {
-				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_5' }, '*');
-			}
+			window.sendVaelGoal('read_chapter_5');
 			return true;
 		},
 
@@ -414,9 +417,7 @@ monogatari.script ({
 		'h А сладкая глазурь! Даже не видя выпечки, я почувствовал текстуру, мякоть и вкус неповторимых синнабон, круассанов и кофе.',
 
         function () {
-			if (window.parent && window.parent.postMessage) {
-				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_6' }, '*');
-			}
+			window.sendVaelGoal('read_chapter_6');
 			return true;
 		},
 
@@ -462,9 +463,7 @@ monogatari.script ({
 		'h Принесли кофе.',
 
 		function () {
-			if (window.parent && window.parent.postMessage) {
-				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_7' }, '*');
-			}
+			window.sendVaelGoal('read_chapter_7');
 			return true;
 		},
 

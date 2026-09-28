@@ -32,6 +32,16 @@ $_ready(() => {
 	// 2. Inside the $_ready function:
 
 	monogatari.init('#monogatari').then(() => {
+
+		const startBtn = document.querySelector('[data-action="start"]');
+		if (startBtn) {
+			startBtn.addEventListener('click', () => {
+				if (typeof window.sendVaelGoal === 'function') {
+					window.sendVaelGoal('click_read');
+				}
+			});
+		}
+
 		// === ЖЕЛЕЗНЫЙ ИНЖЕКТОР ФИНАЛЬНОЙ КНОПКИ В КОРЕНЬ ===
 		const gameContainer = document.getElementById('monogatari');
 		if (gameContainer) {
@@ -47,7 +57,7 @@ $_ready(() => {
 			btn.addEventListener('click', (event) => {
 				event.stopPropagation();
 				if (window.parent && window.parent.postMessage) {
-					window.parent.postMessage({ type: 'unity_goal', id: 'click_join_private_club' }, '*');
+					window.sendVaelGoal('click_join_private_club'); 
 				}
 				window.open('https://boosty.to/vael', '_blank');
 			});
@@ -61,11 +71,11 @@ $_ready(() => {
 
 				// Отправляем итоговую метрику в Tilda
 				if (window.parent && window.parent.postMessage) {
-					window.parent.postMessage({ type: 'unity_goal', id: 'click_join_private_club' }, '*');
+					window.sendVaelGoal('click_join_private_club');
 				}
 
 				// Открываем твой Boosty
-				window.open('https://boosty.to', '_blank');
+				window.open('https://boosty.to/vael', '_blank');
 			});
 		}
 
@@ -86,7 +96,7 @@ $_ready(() => {
 
 				// 1. Отправляем событие клика для Яндекс.Метрики наружу в Tilda
 				if (window.parent && window.parent.postMessage) {
-					window.parent.postMessage({ type: 'unity_goal', id: 'click_join_private_club' }, '*');
+					window.sendVaelGoal('click_private_club');
 				}
 
 				// 2. Открываем прямую ссылку на твой Boosty в новой вкладке
