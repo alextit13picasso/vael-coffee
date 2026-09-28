@@ -270,6 +270,8 @@ input[type=range]::-ms-fill-upper {}
     /* Опускаем внешнюю коробку в самый низ, оставляя 25px зазора под буквы "ДАЛЕЕ" */
     bottom: 45px !important; 
     height: auto !important;
+
+	max-height: none !important;
     
     padding: 0 !important;
     margin: 0 !important;
@@ -589,3 +591,11 @@ body.in-final-scene #custom-read-more-btn {
     opacity: 0 !important;
     pointer-events: none !important;
 }
+/* Жестко растягиваем финальный арт сцены на весь экран без черных полос */
+[data-scene="final_cover"] {
+    background-size: cover !important;
+    background-position: center center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
