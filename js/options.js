@@ -70,5 +70,6 @@ monogatari.preferences({
 
 // Кастомные настройки аудио-ядра Monogatari
 monogatari.configuration({
-	'AudioFade': 250 // Твои 0.25 секунды затухания звука из Unity
+	'AudioFade': 250, // Твои 0.25 секунды затухания звука из Unity
+	'html5': true 
 });
