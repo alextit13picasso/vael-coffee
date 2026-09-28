@@ -33,9 +33,7 @@ button:hover {
 }
 
 /* General Styling for Menu Screens */
-[data-screen] {
-
-}
+[data-screen] {}
 
 /**
  * ===========================
@@ -44,14 +42,10 @@ button:hover {
 **/
 
 /* Main Menu Styling */
-[data-screen="main"] {
-
-}
+[data-screen="main"] {}
 
 /* Main Menu Buttons Styling */
-[data-screen="main"] button {
-
-}
+[data-screen="main"] button {}
 
 /**
  * ===========================
@@ -60,24 +54,16 @@ button:hover {
 **/
 
 /* Slots Style */
-[data-component="save-slot"] figure {
-
-}
+[data-component="save-slot"] figure {}
 
 /* Slot's Image Style */
-[data-component="save-slot"] img {
-
-}
+[data-component="save-slot"] img {}
 
 /* Slots Title Style */
-[data-component="save-slot"] figcaption {
-
-}
+[data-component="save-slot"] figcaption {}
 
 /* Slots Delete Button Style */
-[data-component="save-slot"] button {
-
-}
+[data-component="save-slot"] button {}
 
 /**
  * ===========================
@@ -86,39 +72,25 @@ button:hover {
 **/
 
 /* Choice Buttons style */
-[data-component="choice-container"] button {
-
-}
+[data-component="choice-container"] button {}
 
 /* Choice Button Style on Hover */
-[data-component="choice-container"] button:hover {
-
-}
+[data-component="choice-container"] button:hover {}
 
 /* Text Box styling */
-[data-component="text-box"] {
-
-}
+[data-component="text-box"] {}
 
 /* Character Name Style */
-[data-ui="who"] {
-
-}
+[data-ui="who"] {}
 
 /* Style for Centered Text */
-[data-component="centered-dialog"] {
-
-}
+[data-component="centered-dialog"] {}
 
 /* Character Images Styles */
-[data-screen="game"] [data-character] {
-
-}
+[data-screen="game"] [data-character] {}
 
 /* Other Images Styles */
-[data-screen="game"] [data-image] {
-
-}
+[data-screen="game"] [data-image] {}
 
 /**
  * ===========================
@@ -139,14 +111,10 @@ button:hover {
 }
 
 /* Quick Menu Buttons Style on Hover */
-[data-component="quick-menu"] span:hover {
-
-}
+[data-component="quick-menu"] span:hover {}
 
 /* Quick Menu Buttons Icon Style */
-[data-component="quick-menu"] > span > .fa {
-
-}
+[data-component="quick-menu"]>span>.fa {}
 
 /**
  * ===========================
@@ -155,92 +123,55 @@ button:hover {
 **/
 
 /* Use the background property to set a color for these */
-input[type=range]:focus::-webkit-slider-runnable-track {
+input[type=range]:focus::-webkit-slider-runnable-track {}
 
-}
+input[type=range]::-webkit-slider-runnable-track {}
 
-input[type=range]::-webkit-slider-runnable-track {
+input[type=range]:focus::-ms-fill-upper {}
 
-}
+input[type=range]:focus::-ms-fill-lower {}
 
-input[type=range]:focus::-ms-fill-upper {
+input[type=range]::-moz-range-track {}
 
-}
+input[type=range]::-ms-fill-lower {}
 
-input[type=range]:focus::-ms-fill-lower {
-
-}
-
-input[type=range]::-moz-range-track {
-
-}
-
-input[type=range]::-ms-fill-lower {
-
-}
-
-input[type=range]::-ms-fill-upper {
-
-}
+input[type=range]::-ms-fill-upper {}
 
 /** Medium Screens, Phablets (601px) **/
 @media screen and (min-width: 37.56255em) {
 	/* Styles for the desktop version of the Quick Menu */
 
 	/* Quick Menu Style */
-	[data-component="quick-menu"] {
-
-	}
+	[data-component="quick-menu"] {}
 
 	/* Quick Menu Buttons Style */
-	[data-component="quick-menu"] span {
-
-	}
+	[data-component="quick-menu"] span {}
 
 	/* Quick Menu Buttons Style on Hover */
-	[data-component="quick-menu"] span:hover {
-
-	}
+	[data-component="quick-menu"] span:hover {}
 }
 
 /** Medium Devices, Tablets (992px)**/
-@media screen and (min-width: 62em) {
-
-}
+@media screen and (min-width: 62em) {}
 
 /** HD Screen, Large Devices, Wide Screens, Desktop (1200px) **/
-@media screen and (min-width: 75em) {
-
-}
+@media screen and (min-width: 75em) {}
 
 /** Full HD Screen, Large Devices, Wide Screens, Large Desktops (1920px) **/
-@media screen and (min-width: 120em) {
-
-}
+@media screen and (min-width: 120em) {}
 
 /** Retina Screen , Large Devices, Wide Screens(2560px) **/
-@media screen and (min-width: 160em) {
-
-}
+@media screen and (min-width: 160em) {}
 
 /** 4k Screens, Large Devices, Wide Screens (3840px) **/
-@media screen and (min-width: 240em) {
-
-}
+@media screen and (min-width: 240em) {}
 
 /** 5k Screens, Large Devices, Wide Screens (5000px) **/
-@media screen and (min-width: 312.5em) {
-
-}
+@media screen and (min-width: 312.5em) {}
 
 /** 8k Screens, Large Devices, Wide Screens (8000px) **/
-@media screen and (min-width: 500em) {
-
-}
-
-/* =============================================================================
-   ЧИСТАЯ НАСТРОЙКА ЭКРАНОВ И СЛОЕВ (БЕЗ ПАРАЛЛАКСА)
-   ============================================================================= */
+@media screen and (min-width: 500em) {}
+/* ЗАДНИЙ ПЛАН */
 [data-screen="game"] [data-image*="_back"] {
     position: absolute !important;
     width: 100% !important;
@@ -251,7 +182,6 @@ input[type=range]::-ms-fill-upper {
     object-position: center center !important; 
     
     /* Небольшой запас по размеру */
-    scale: 1.10 !important; 
     z-index: 1 !important; /* Уходит на самый нижний слой */
 }
 
@@ -263,13 +193,42 @@ input[type=range]::-ms-fill-upper {
     object-fit: cover !important;
     
     /* Твой пиксельный сдвиг влево и вниз */
-    object-position: calc(50% - 120px) calc(50% + 280px) !important;
+    object-position: calc(50% - 120px) calc(50% + 380px) !important;
     
     /* ТОЧКАПРИВЯЗКИ: Фиксирует левый край, чтобы справа не вылезала пустота */
-    transform-origin: left center !important;
+    transform-origin: center center !important;
     
     /* Повышенный масштаб для компенсации сдвига */
-    scale: 1.50 !important; 
     z-index: 2 !important;
 }
 
+/* 1. НАСТРОЙКА ФОНА И ОТСТУПОВ КОНТЕЙНЕРА */
+[data-component="text-box"] {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+
+    /* Выставляем новые увеличенные отступы */
+    padding-left: 2rem !important;   /* В 2 раза больше дефолтного 1rem */
+    padding-right: 2rem !important;  /* Симметричный правый отступ */
+    padding-bottom: 2rem !important; /* Нижний отступ равен левому */
+    box-sizing: border-box !important;
+}
+
+/* 2. КОРРЕКЦИЯ ВНУТРЕННЕГО БЛОКА С ТЕКСТОМ */
+[data-component="text-box"] [data-ui="say"] {
+    margin-top: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    
+    /* Сбрасываем внутренние отступы самого текстового поля, 
+       так как теперь за них отвечает родительский контейнер выше */
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+}
