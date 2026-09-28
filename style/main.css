@@ -412,3 +412,43 @@ input[type=range]::-ms-fill-upper {}
 	object-position: calc(50% - 160px) calc(50% + 480px) !important;
 	scale: 0.8;
 }
+/* =============================================================================
+   КНОПКА-КАРТИНКА "ЧИТАТЬ ЕЩЕ" ВНУТРИ ИГРОВОГО ЭКРАНА
+   ============================================================================= */
+
+#custom-read-more-btn {
+    /* Фиксируем строго вверху по центру игрового экрана */
+    position: absolute !important;
+    top: 20px !important; /* Отступ от верхнего края */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    
+    /* Размеры под твою картинку */
+    width: 300px !important;
+    height: 120px !important;
+    
+    background-image: url('../assets/images/read_more_button.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-color: transparent !important;
+    
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    outline: none !important;
+    
+    /* Выводим на самый верхний слой внутри экрана игры */
+    z-index: 99999 !important;
+    display: block !important;
+    
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Эффекты отклика при нажатии */
+#custom-read-more-btn:hover {
+    opacity: 0.9 !important;
+}
+#custom-read-more-btn:active {
+    transform: translateX(-50%) scale(0.95) !important;
+}

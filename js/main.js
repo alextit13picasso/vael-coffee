@@ -34,6 +34,21 @@ $_ready(() => {
 	monogatari.init('#monogatari').then(() => {
 		// 3. Inside the init function:
 
+		const readMoreBtn = document.getElementById('custom-read-more-btn');
+		if (readMoreBtn) {
+			readMoreBtn.addEventListener('click', () => {
+				console.log("🖱️ [КЛИК] Переход в клуб по кнопке 'Читать еще'");
+
+				// 1. Отправляем событие клика для Яндекс.Метрики наружу в Tilda
+				if (window.parent && window.parent.postMessage) {
+					window.parent.postMessage({ type: 'unity_goal', id: 'click_join_private_club' }, '*');
+				}
+
+				// 2. Открываем прямую ссылку на твой Boosty в новой вкладке
+				window.open('https://boosty.to/vael', '_blank');
+			});
+		}
+
 
 		console.log("🚀 [ПАНДОРА-АВТОМАТ] Активация сквозного слежения за плеерами...");
 
