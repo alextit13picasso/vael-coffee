@@ -533,56 +533,59 @@ input[type=range]::-ms-fill-upper {}
     background: transparent !important;
     -webkit-tap-highlight-color: transparent !important;
 }
-
 /* =============================================================================
-   ФИНАЛЬНЫЙ ЭКРАН И ЦЕНТРАЛЬНАЯ КНОПКА-КАРТИНКА
+   ЦЕНТРАЛЬНАЯ КНОПКА ФИНАЛА (АБСОЛЮТНЫЙ КОРНЕВОЙ ЦЕНТР)
    ============================================================================= */
 
 #custom-final-boosty-btn {
     position: absolute !important;
+    
+    /* Идеальная математическая центровка по осям X и Y ровно по центру кадра 9:16 */
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important; /* Идеальная центровка по осям X и Y */
+    transform: translate(-50%, -50%) !important; 
     
-    /* Размеры под твой ассет final_button.png (подкрути, если пропорции другие) */
-    width: 280px !important;
-    height: 70px !important;
-    max-width: 85% !important;
+    /* Размеры (увеличена в 2 раза) */
+    width: 800px !important;
+    height: 200px !important;
+    max-width: 85% !important; /* Авто-сжатие под ширину экрана смартфона */
     
-    background-image: url('../assets/images/final_button.png') !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
+    background: transparent !important;
     background-color: transparent !important;
-    
     border: none !important;
     box-shadow: none !important;
     cursor: pointer !important;
     outline: none !important;
     
-    /* Выводим поверх всего */
-    z-index: 999999 !important;
+    /* Самый высокий приоритет — поверх абсолютно всех окон, шторок и слоев */
+    z-index: 9999999 !important;
     pointer-events: auto !important;
     
-    /* По умолчанию кнопка выключена */
-    display: none !important;
+    /* По умолчанию скрыта, включается скриптом в сценарии */
+    display: none; 
     
-    transition: transform 0.1s ease, opacity 0.2s ease !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: transform 0.1s ease !important;
 }
 
-#custom-final-boosty-btn:active {
-    transform: translate(-50%, -50%) scale(0.95) !important; /* Мягкое проседание при клике */
-}
-
-/* КЛАСС ОЧИСТКИ ИНТЕРФЕЙСА ДЛЯ ФИНАЛЬНОЙ СЦЕНЫ */
-body.in-final-scene [data-component="text-box"],
-body.in-final-scene #custom-text-next-btn,
-body.in-final-scene #custom-read-more-btn {
-    display: none !important; /* Полностью гасим интерфейс, текст и кнопку "Далее" */
+/* Картинка внутри кнопки */
+#custom-final-boosty-btn img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
     pointer-events: none !important;
 }
 
-body.in-final-scene #custom-final-boosty-btn {
-    display: block !important; /* Показываем кнопку по центру только здесь */
+/* Отклик при тапе */
+#custom-final-boosty-btn:active {
+    transform: translate(-50%, -50%) scale(0.95) !important;
 }
-
+/* ЖЕСТКОЕ СЛЕДУЮЩЕЕ СКРЫТИЕ ИНТЕРФЕЙСА В ФИНАЛЕ */
+body.in-final-scene [data-component="text-box"],
+body.in-final-scene #custom-text-next-btn,
+body.in-final-scene #custom-read-more-btn {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}

@@ -154,7 +154,7 @@ monogatari.script ({
 		'play music ambient_scene3 loop',
         'stop sound',
 		'play sound scene_3_block_1',
-		window.camera(0, 0, 100),
+		window.camera(25, 10, 100),
 		'h Машины медленно, не быстрее неспешной походки человека ползли одна за другой по узкой дороге, блестя фарами с ближним светом.',
 
         'stop sound',
@@ -404,39 +404,50 @@ monogatari.script ({
 		},
 
 		'show scene #000000 with fadeIn',
-		'wait 2000',
-		'end'
+		'jump scene_final'
 	],
 	// Финальная сцена
-	'scene_8': [
-        'hide image scene_7_back with fadeOut',
+	'scene_final': [
+		'hide image scene_7_back with fadeOut',
 		'hide image scene_7_front with fadeOut',
-		'show image scene_8_back with fadeIn',
-		'show image scene_8_front with fadeIn',
+        // 1. Включаем режим финала (гасим текст, верхнюю кнопку и кнопку "Далее")
+         function() {
+            document.body.classList.add('in-final-scene');
+            
+            // Просто включаем отображение кнопки, когда настал финал
+            const finalBtn = document.getElementById('custom-final-boosty-btn');
+            if (finalBtn) {
+                finalBtn.style.setProperty('display', 'block', 'important');
+            }
+            return true;
+        },
 
 		function () {
-			// Если игрок начинает заново — гарантированно включаем дождь обратно
+			/* ЖЕЛЕЗОБЕТОННЫЙ ВЫКЛЮЧАТЕЛЬ: 
+			   Находим холст дождя по ID и полностью скрываем его из видимости */
 			const canvas = document.getElementById('rainCanvas');
-			if (canvas) canvas.style.display = 'block';
-			return true;
-		},
-
-        'stop music',
-		'play music ambient_scene7 loop',
-        
-		window.camera(0, 0, 100),
-		
-		function () {
-			if (window.parent && window.parent.postMessage) {
-				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_8' }, '*');
+			if (canvas) {
+				canvas.style.display = 'none';
 			}
-			return true;
+			return true; // Важно вернуть true, чтобы Monogatari пошел дальше по сценарию
 		},
-
-		'show scene #000000 with fadeIn',
-		'wait 2000',
-		'end'
-	],
+        
+        // ЖЕЛЕЗНЫЙ ФИКС: Очищаем абсолютно все картинки и фоны без вызова ошибок по именам
+        'clear', 
+        
+        // 2. Останавливаем музыку предыдущей сцены
+        'stop music',
+		'stop sound',
+        
+        // 3. Запускаем финальный эмбиент Scene_7.mp3 по кругу
+        'play music ambient_scene7 loop',
+        
+        // 4. Мягко выводим финальный арт на весь экран
+        'show image final_cover with fadeIn',
+        
+        // Пауза, чтобы игрок застыл под музыку и шум дождя
+        'wait 2000'
+    ]
 });
 
 
@@ -532,5 +543,9 @@ monogatari.assets ('images', {
     // Сцена 7
 	'scene_7_front': 'scene_7_front.png',
 	'scene_7_back': 'scene_7_back.png',
+
+	// Сцена Финал
+	'final_cover': 'final_scene_cover.png',
+	'final_button_asset': 'final_button.png',
 });
 

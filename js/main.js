@@ -32,7 +32,26 @@ $_ready(() => {
 	// 2. Inside the $_ready function:
 
 	monogatari.init('#monogatari').then(() => {
-		// 3. Inside the init function:
+		// === ЖЕЛЕЗНЫЙ ИНЖЕКТОР ФИНАЛЬНОЙ КНОПКИ В КОРЕНЬ ===
+		const gameContainer = document.getElementById('monogatari');
+		if (gameContainer) {
+			const btn = document.createElement('button');
+			btn.id = 'custom-final-boosty-btn';
+
+			// ВНИМАНИЕ: Сверь имя файла в папке assets/images/. 
+			// Если он называется final_button.PNG (капсом) — измени расширение в коде ниже!
+			btn.innerHTML = '<img src="assets/images/final_butoon.png" alt="" style="display:block; width:100%; height:100%;">';
+
+			gameContainer.appendChild(btn);
+
+			btn.addEventListener('click', (event) => {
+				event.stopPropagation();
+				if (window.parent && window.parent.postMessage) {
+					window.parent.postMessage({ type: 'unity_goal', id: 'click_join_private_club' }, '*');
+				}
+				window.open('https://boosty.to/vael', '_blank');
+			});
+		}
 
 		const finalBoostyBtn = document.getElementById('custom-final-boosty-btn');
 		if (finalBoostyBtn) {
