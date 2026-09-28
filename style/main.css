@@ -452,3 +452,80 @@ input[type=range]::-ms-fill-upper {}
 #custom-read-more-btn:active {
     transform: translateX(-50%) scale(0.95) !important;
 }
+
+[data-screen="game"] {
+    pointer-events: none !important;
+}
+
+[data-screen="game"] button,
+#custom-read-more-btn,
+#custom-next-btn {
+    pointer-events: auto !important;
+}
+
+/* =============================================================================
+   КНОПКА ДАЛЕЕ (СТРЕЛКА) С ПРИВЯЗКОЙ К ОТСТУПАМ ТЕКСТА
+   ============================================================================= */
+
+/* =============================================================================
+   НОВАЯ ПОЛНОШИРИННАЯ КНОПКА "ДАЛЕЕ" И КОРРЕКЦИЯ ТЕКСТА
+   ============================================================================= */
+
+/* Приподнимаем стандартное текстовое окно Monogatari над кнопкой */
+[data-component="text-box"] {
+    bottom: 40px !important; /* Текст теперь заканчивается четко над кнопкой */
+    margin-bottom: 5px !important;
+}
+/* =============================================================================
+   ФИНАЛЬНАЯ КНОПКА "ДАЛЕЕ" (ПОСТОЯННЫЙ НАСЫЩЕННЫЙ ЦВЕТ И ГЛУБОКОЕ СВЕЧЕНИЕ)
+   ============================================================================= */
+/* =============================================================================
+   ФИНАЛЬНАЯ КНОПКА "ДАЛЕЕ" С ИДЕАЛЬНОЙ СИММЕТРИЕЙ ОТСТУПОВ (40px)
+   ============================================================================= */
+/* =============================================================================
+   ФИНАЛЬНАЯ КНОПКА "ДАЛЕЕ" С ТОЧНЫМИ УМЕНЬШЕННЫМИ ОТСТУПАМИ (25px)
+   ============================================================================= */
+
+#custom-text-next-btn {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    
+    /* Делаем зону клика компактнее по высоте, чтобы не лезла вверх */
+    width: 100% !important;
+    height: 50px !important; 
+    background: transparent !important; 
+    
+    display: flex !important;
+    justify-content: flex-end !important; /* Прижимаем строго к правому краю */
+    align-items: flex-end !important;    /* Прижимаем строго к нижнему краю */
+    box-sizing: border-box !important;
+    
+    /* Зажимаем точные аккуратные отступы под границы твоего текстового блока */
+    padding-right: 25px !important;  
+    padding-bottom: 25px !important; 
+
+    /* Твой фирменный нуарный стиль шрифта */
+    color: #C9BFB3 !important; 
+    font-family: "Georgia", "Times New Roman", serif !important; 
+    font-size: 14px !important;
+    letter-spacing: 6px !important; 
+    text-transform: uppercase !important;
+    font-weight: 300 !important;
+    
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    outline: none !important;
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+    text-shadow: 0 0 12px rgba(201, 191, 179, 0.6) !important;
+}
+
+/* Полная фиксация визуала без изменений при взаимодействиях */
+#custom-text-next-btn:hover,
+#custom-text-next-btn:active {
+    color: #C9BFB3 !important;
+    text-shadow: 0 0 12px rgba(201, 191, 179, 0.6) !important;
+}

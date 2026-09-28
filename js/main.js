@@ -34,6 +34,16 @@ $_ready(() => {
 	monogatari.init('#monogatari').then(() => {
 		// 3. Inside the init function:
 
+		// === ОБРАБОТКА КЛИКА ПО ПОЛНОШИРИННОЙ КНОПКЕ "ДАЛЕЕ" ===
+		const textNextBtn = document.getElementById('custom-text-next-btn');
+		if (textNextBtn) {
+			textNextBtn.addEventListener('click', (event) => {
+				event.stopPropagation();
+				console.log("⚡ [КЛИК] Полноширинный тап. Перелистываем блок...");
+				monogatari.proceed();
+			});
+		}
+
 		const readMoreBtn = document.getElementById('custom-read-more-btn');
 		if (readMoreBtn) {
 			readMoreBtn.addEventListener('click', () => {
