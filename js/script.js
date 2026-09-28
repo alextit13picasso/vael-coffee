@@ -7,6 +7,23 @@ monogatari.characters ({
     }
 });
 
+// Операторская система: движение ОТНОСИТЕЛЬНО базового конфига (-120px, +380px)
+window.moveFront = function(offsetX, offsetY, scalePercent) {
+    return function() {
+        const frontImg = document.querySelector('[data-screen="game"] [data-image*="_front"]');
+        if (frontImg) {
+            // Рассчитываем смещение относительно твоей идеальной точки
+            // offsetX и offsetY — это сдвиг в пикселях от базовой позиции
+            const targetX = `calc(50% - 120px + ${offsetX}px)`;
+            const targetY = `calc(50% + 380px + ${offsetY}px)`;
+            
+            frontImg.style.setProperty('object-position', `${targetX} ${targetY}`, 'important');
+            frontImg.style.setProperty('transform', `scale(${scalePercent / 100})`, 'important');
+        }
+        return true;
+    };
+};
+
 monogatari.script ({
 	// Точка входа в игру
 	'Start': [
@@ -26,22 +43,27 @@ monogatari.script ({
 	// --- СЦЕНА 1 ---
 	'scene_1': [
 		'play sound scene_1_block_1',
+		window.moveFront(0, 0, 100), 
 		'h Мелкие, еле заметные капли дождя висели в воздухе. Они больше походили на пыль, на уютное облако, которое пахло мокрым сеном, теплом и мякотью земли.',
 
         'stop sound',
 		'play sound scene_1_block_2',
+		window.moveFront(30, -20, 112),
 		'h Запах грибов, вялой травы и листьев наполнял все вокруг и казалось, что дома, скамейки, старое дерево и даже соседский дворник пропитаны этим ароматом.',
 
         'stop sound',
 		'play sound scene_1_block_3',
+		window.moveFront(35, 85, 100),
 		'h Двенадцать часов, полдень, а на улице почти сумерки. Тяжелые серые с синевой тучи казалось зацепились за верхушки деревьев.',
 
         'stop sound',
 		'play sound scene_1_block_4',
+		window.moveFront(20, 90, 120), 
 		'h Они заполнили все доступное пространство между небом и землей и теперь нельзя было с достоверной точностью сказать где именно начиналось и заканчивалось небо. ',
 
         'stop sound',
 		'play sound scene_1_block_5',
+		window.moveFront(35, 85, 105),
 		'h Но тяжесть эта не давила, напротив, было приятно и уютно чувствовать себя окутанным такой необыкновенной атмосферой.',
 
         function () {

@@ -319,3 +319,20 @@ input[type=range]::-ms-fill-upper {}
 [data-ui="transition"] {
     z-index: 5 !important;
 }
+
+/* ПЛАВНЫЙ НАПЛЫВ ДЛЯ ПЕРЕДНЕГО ПЛАНА (ОПЕРАТОРСКАЯ СИСТЕМА) */
+[data-screen="game"] [data-image*="_front"] {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: 2 !important;
+
+    /* Точка масштабирования — левый нижний угол, как у тебя в Юнити */
+    transform-origin: left bottom !important;
+
+    /* Железно задаем плавность анимации. 
+       Все изменения через JS будут интерполироваться плавно за 2.5 секунды */
+    transition: object-position 2.5s ease-in-out, transform 2.5s ease-in-out !important;
+    will-change: object-position, transform !important;
+}
