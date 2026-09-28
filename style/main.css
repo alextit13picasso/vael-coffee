@@ -241,3 +241,74 @@ input[type=range]::-ms-fill-upper {}
     /* Важно для эффекта печати: внутренний контейнер букв тоже должен наследовать цвет */
     --text-color: #C9BFB3 !important; 
 }
+
+/* ПОЛНОСТЬЮ СКРЫВАЕМ ВЕРХНЮЮ ПАНЕЛЬ УПРАВЛЕНИЯ */
+[data-component="quick-menu"] {
+    display: none !important;
+}
+
+/* 1. ВЫСТАВЛЯЕМ АРТ-ЗАСТАВКУ НА СТАРТОВЫЙ ЭКРАН */
+[data-screen="main"] {
+    background-color: #000000 !important;
+    
+    /* Подключаем фоновое изображение из папки assets/images/ */
+    background-image: url('../assets/images/start_screen_back.png') !important; 
+    background-size: cover !important;        /* Растягивает арт на весь экран смартфона */
+    background-position: center center !important; /* Центрирует картинку */
+    background-repeat: no-repeat !important;
+}
+
+/* 2. ЖЕСТКО ВЫРЕЗАЕМ ВСЕ ЛИШНИЕ КНОПКИ (Загрузить, Настройки, Помощь) */
+[data-screen="main"] [data-component="main-menu"] button:not([data-action="start"]) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 3. ПОЗИЦИОНИРОВАНИЕ КОНТЕЙНЕРА СТАРТОВОЙ КНОПКИ */
+[data-screen="main"] [data-component="main-menu"] {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: absolute !important;
+    bottom: 25vh !important; /* Высота кнопки от низа (подкрути, если перекроет арт) */
+    width: 100% !important;
+    left: 0 !important;
+}
+
+/* 4. КНОПКА-КАРТИНКА (УВЕЛИЧЕНА В 3 РАЗА) */
+[data-screen="main"] button[data-action="start"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    display: block !important;
+    
+    /* Размеры увеличены ровно в 3 раза (было 280х80, стало 840х240) */
+    width: 840px !important;  
+    height: 240px !important; 
+    
+    /* Максимальные ограничения для корректного сжатия на мелких экранах */
+    max-width: 85% !important; 
+    
+    /* Картинка старта из assets/images/ */
+    background-image: url('../assets/images/start_button.png') !important; 
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+
+    /* Полностью убираем дефолтный текст */
+    color: transparent !important;
+    font-size: 0 !important;
+    text-shadow: none !important;
+    
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+}
+
+/* Мягкий отклик кнопки при тапе */
+[data-screen="main"] button[data-action="start"]:active {
+    transform: scale(0.95) !important;
+}
