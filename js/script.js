@@ -408,8 +408,6 @@ monogatari.script ({
 	],
 	// Финальная сцена
 	'scene_final': [
-		'hide image scene_7_back with fadeOut',
-		'hide image scene_7_front with fadeOut',
         // 1. Включаем режим финала (гасим текст, верхнюю кнопку и кнопку "Далее")
          function() {
             document.body.classList.add('in-final-scene');
