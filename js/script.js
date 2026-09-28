@@ -407,6 +407,36 @@ monogatari.script ({
 		'wait 2000',
 		'end'
 	],
+	// Финальная сцена
+	'scene_8': [
+        'hide image scene_7_back with fadeOut',
+		'hide image scene_7_front with fadeOut',
+		'show image scene_8_back with fadeIn',
+		'show image scene_8_front with fadeIn',
+
+		function () {
+			// Если игрок начинает заново — гарантированно включаем дождь обратно
+			const canvas = document.getElementById('rainCanvas');
+			if (canvas) canvas.style.display = 'block';
+			return true;
+		},
+
+        'stop music',
+		'play music ambient_scene7 loop',
+        
+		window.camera(0, 0, 100),
+		
+		function () {
+			if (window.parent && window.parent.postMessage) {
+				window.parent.postMessage({ type: 'unity_goal', id: 'read_chapter_8' }, '*');
+			}
+			return true;
+		},
+
+		'show scene #000000 with fadeIn',
+		'wait 2000',
+		'end'
+	],
 });
 
 

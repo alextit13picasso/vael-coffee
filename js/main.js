@@ -34,6 +34,22 @@ $_ready(() => {
 	monogatari.init('#monogatari').then(() => {
 		// 3. Inside the init function:
 
+		const finalBoostyBtn = document.getElementById('custom-final-boosty-btn');
+		if (finalBoostyBtn) {
+			finalBoostyBtn.addEventListener('click', (event) => {
+				event.stopPropagation();
+				console.log("🖱️ [ФИНАЛ] Нажата центральная кнопка. Переход на Boosty...");
+
+				// Отправляем итоговую метрику в Tilda
+				if (window.parent && window.parent.postMessage) {
+					window.parent.postMessage({ type: 'unity_goal', id: 'click_join_private_club' }, '*');
+				}
+
+				// Открываем твой Boosty
+				window.open('https://boosty.to', '_blank');
+			});
+		}
+
 		// === ОБРАБОТКА КЛИКА ПО ПОЛНОШИРИННОЙ КНОПКЕ "ДАЛЕЕ" ===
 		const textNextBtn = document.getElementById('custom-text-next-btn');
 		if (textNextBtn) {
