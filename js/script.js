@@ -482,29 +482,7 @@ monogatari.script ({
 	],
 	// Финальная сцена
 	'scene_final': [
-        // 1. Включаем режим финала (гасим текст, верхнюю кнопку и кнопку "Далее")
-         function() {
-            document.body.classList.add('in-final-scene');
-            
-            // Просто включаем отображение кнопки, когда настал финал
-            const finalBtn = document.getElementById('custom-final-boosty-btn');
-            if (finalBtn) {
-                finalBtn.style.setProperty('display', 'block', 'important');
-            }
-            return true;
-        },
-
-		function () {
-			/* ЖЕЛЕЗОБЕТОННЫЙ ВЫКЛЮЧАТЕЛЬ: 
-			   Находим холст дождя по ID и полностью скрываем его из видимости */
-			const canvas = document.getElementById('rainCanvas');
-			if (canvas) {
-				canvas.style.display = 'none';
-			}
-			return true; // Важно вернуть true, чтобы Monogatari пошел дальше по сценарию
-		},
-        
-        // ЖЕЛЕЗНЫЙ ФИКС: Очищаем абсолютно все картинки и фоны без вызова ошибок по именам
+        // 1. ЖЕСТКИЙ ФИКС: Сначала полностью очищаем экран от старых картинок и фонов
         'clear', 
         
         // 2. Останавливаем музыку предыдущей сцены
@@ -516,8 +494,34 @@ monogatari.script ({
         
         // 4. Мягко выводим финальный арт на весь экран
         'show image final_cover with fadeIn',
+
+		function () {
+			/* ЖЕЛЕЗОБЕТОННЫЙ ВЫКЛЮЧАТЕЛЬ ДОЖДЯ: 
+			   Находим холст дождя по ID и полностью скрываем его из видимости */
+			const canvas = document.getElementById('rainCanvas');
+			if (canvas) {
+				canvas.style.display = 'none';
+			}
+			return true; 
+		},
+
+        // 5. ТОЛЬКО ТЕПЕРЬ активируем финальные стили и включаем саму кнопку
+        function() {
+            // Скрываем текстовое поле и кнопку "Далее" через класс body
+            document.body.classList.add('in-final-scene');
+            
+            // Включаем отображение кнопки Boosty СТРОГО ПОСЛЕ команды 'clear'
+            const finalBtn = document.getElementById('custom-final-boosty-btn');
+            if (finalBtn) {
+                finalBtn.style.setProperty('display', 'block', 'important');
+                console.log("🎯 [УСПЕХ] Финальная кнопка принудительно отображена в DOM.");
+            } else {
+                console.error("❌ [КРИТ] Элемент #custom-final-boosty-btn не найден на странице!");
+            }
+            return true;
+        },
         
-        // Пауза, чтобы игрок застыл под музыку и шум дождя
+        // Переносим паузу в самый конец, чтобы она не блокировала выполнение функции выше
         'wait 2000'
     ]
 });

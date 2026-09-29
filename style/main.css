@@ -537,21 +537,21 @@ input[type=range]::-ms-fill-upper {}
     -webkit-tap-highlight-color: transparent !important;
 }
 /* =============================================================================
-   ЦЕНТРАЛЬНАЯ КНОПКА ФИНАЛА (АБСОЛЮТНЫЙ КОРНЕВОЙ ЦЕНТР)
+   ЦЕНТРАЛЬНАЯ КНОПКА ФИНАЛА (АБСОЛЮТНЫЙ КОРНЕВОЙ ЦЕНТР ДЛЯ MONOGATARI)
    ============================================================================= */
 
 #custom-final-boosty-btn {
     position: absolute !important;
     
-    /* Идеальная математическая центровка по осям X и Y ровно по центру кадра 9:16 */
+    /* Жесткая математическая центровка по осям X и Y относительно #monogatari */
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important; 
     
-    /* Размеры (увеличена в 2 раза) */
-    width: 800px !important;
-    height: 200px !important;
-    max-width: 85% !important; /* Авто-сжатие под ширину экрана смартфона */
+    /* Пропорциональные размеры под мобильный экран */
+    width: 280px !important; 
+    height: auto !important;
+    max-width: 80% !important; 
     
     background: transparent !important;
     background-color: transparent !important;
@@ -560,11 +560,10 @@ input[type=range]::-ms-fill-upper {}
     cursor: pointer !important;
     outline: none !important;
     
-    /* Самый высокий приоритет — поверх абсолютно всех окон, шторок и слоев */
-    z-index: 9999999 !important;
-    pointer-events: auto !important;
+    /* Поднимаем над абсолютно всеми внутренними шторками и экранами игры */
+    z-index: 99999999 !important;
     
-    /* По умолчанию скрыта, включается скриптом в сценарии */
+    /* Изначально скрыта, JS переключит на block */
     display: none; 
     
     -webkit-tap-highlight-color: transparent !important;
@@ -574,15 +573,25 @@ input[type=range]::-ms-fill-upper {}
 /* Картинка внутри кнопки */
 #custom-final-boosty-btn img {
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
     object-fit: contain !important;
     pointer-events: none !important;
+    display: block !important;
 }
 
 /* Отклик при тапе */
 #custom-final-boosty-btn:active {
     transform: translate(-50%, -50%) scale(0.95) !important;
 }
+
+/* Принудительное отображение в финальной сцене, перебивающее любые запреты движка */
+body.in-final-scene #custom-final-boosty-btn {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
 /* ЖЕСТКОЕ СЛЕДУЮЩЕЕ СКРЫТИЕ ИНТЕРФЕЙСА В ФИНАЛЕ */
 body.in-final-scene [data-component="text-box"],
 body.in-final-scene #custom-text-next-btn,
