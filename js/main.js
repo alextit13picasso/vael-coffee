@@ -42,13 +42,13 @@ $_ready(() => {
 			});
 		}
 
-				// === ЖЕЛЕЗНЫЙ ИНЖЕКТОР ФИНАЛЬНОЙ КНОПКИ В КОРЕНЬ ===
+		// === ЖЕЛЕЗНЫЙ ИНЖЕКТОР ФИНАЛЬНОЙ КНОПКИ В КОРЕНЬ ===
 		const finalBoostyBtn = document.getElementById('custom-final-boosty-btn');
 		if (finalBoostyBtn) {
 			// Навешиваем только ОДИН слушатель клика
 			finalBoostyBtn.addEventListener('click', (event) => {
 				event.stopPropagation(); // Останавливаем всплытие события в движке
-				
+
 				console.log("🖱️ [ФИНАЛ] Нажата центральная кнопка. Переход на Boosty...");
 
 				// 1. Отправляем финальную метрику вступления в клуб (СТРОГО ОДИН РАЗ)
@@ -110,6 +110,38 @@ $_ready(() => {
 					// Достаем длительность аудиофайла из внутренних свойств Howler (он спрятан внутри плеера)
 					const duration = player._duration || (typeof player.duration === 'function' ? player.duration() : player.duration);
 					console.log(`⏱️ [ПАНДОРА ТАЙМИНГ] Файл "${asset}" длится: ${duration} сек.`);
+					// === НАЧАЛО БЛОКА РАСЧЕТА ПРОГРЕССА (ПЕРЕПИСАННЫЙ) ===
+					try {
+						const totalBlocks = 44;
+						const currentLabel = monogatari.state('label') || 'scene_1';
+						
+						// Вытаскиваем номер блока прямо из имени файла (например, из "scene_1_block_2" достанет 2)
+						const match = asset.match(/_block_(\d+)/);
+						const stepInLabel = match ? parseInt(match[1], 10) - 1 : 0;
+						
+						let previousBlocksOffset = 0;
+						if (currentLabel === 'scene_2') previousBlocksOffset = 5;  
+						if (currentLabel === 'scene_3') previousBlocksOffset = 12; 
+						if (currentLabel === 'scene_4') previousBlocksOffset = 21; 
+						if (currentLabel === 'scene_5') previousBlocksOffset = 26; 
+						if (currentLabel === 'scene_6') previousBlocksOffset = 34; 
+						if (currentLabel === 'scene_7') previousBlocksOffset = 40; 
+
+						const absoluteCurrentStep = previousBlocksOffset + stepInLabel;
+						const progressPercent = Math.min(((absoluteCurrentStep + 1) / totalBlocks) * 100, 100);
+
+						console.log(`📊 [PROGRESS] Сцена: ${currentLabel} | Шаг: ${stepInLabel} | Абсолютный шаг: ${absoluteCurrentStep + 1}/${totalBlocks} | Прогресс: ${progressPercent.toFixed(1)}%`);
+						
+						// СРАЗУ ДВИГАЕМ ВИЗУАЛЬНУЮ ПОЛОСКУ В CSS, ЕСЛИ ОНА ЕСТЬ В HTML
+						const progressBar = document.getElementById('custom-progress-bar');
+						if (progressBar) {
+							progressBar.style.width = progressPercent + '%';
+						}
+					} catch (progressError) {
+						console.log("❌ Ошибка расчета шага: " + progressError.message);
+					}
+					// === КОНЕЦ БЛОКА РАСЧЕТА ПРОГРЕССА ===
+
 
 					if (duration && duration > 0) {
 						const totalWaitTime = (duration + 0.3) * 1000; // Длина mp3 + 300мс пауза

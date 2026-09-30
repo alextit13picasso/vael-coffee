@@ -628,3 +628,25 @@ body.in-final-scene #custom-read-more-btn {
 #monogatari {
     background-color: transparent !important;
 }
+
+/* Серый полупрозрачный трек-подложка над текстовым окном */
+#custom-progress-container {
+    position: absolute !important;
+    top: 0px; /* Прижимаем строго к верхнему краю текстовой области */
+    left: 0 !important;
+    width: 100% !important;
+    height: 4px !important; /* Тонкая, изящная нуарная линия */
+    background: rgba(255, 255, 255, 0.15) !important; 
+    z-index: 999999 !important; /* Железно поверх визуальных слоев */
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Белая заполняющая линия прогресса с глубоким свечением */
+#custom-progress-bar {
+    width: 0%; /* На старте пустая */
+    height: 100% !important;
+    background-color: #ffffff !important; /* Насыщенный чистый белый цвет */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important; /* Фирменное свечение */
+    transition: width 0.3s ease-out !important; /* Плавное перетекание при смене блоков */
+}
