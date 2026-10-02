@@ -143,7 +143,13 @@ function showInterstitialAd(callback) {
         Ya.Context.AdvManager.render({
             blockId: "R-A-20156683-2", // Сюда вставь реальный ID полноэкранного блока из РСЯ
             type: "fullscreen",
-			"platform": "touch"
+			"platform": "touch",
+			onClose: function () {
+                if (callback) callback(); // Игра продолжается только ПОСЛЕ закрытия крестика
+            },
+            onError: function () {
+                if (callback) callback(); // При ошибке сети не ломаем игру, идем дальше
+            }
         });
     });
 }
