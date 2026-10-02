@@ -137,6 +137,17 @@ function initBottomBanner() {
     }, 300); // 300 миллисекунд задержки
 }
 
+// Функция показа полноэкранной рекламы на стыках глав
+function showInterstitialAd(callback) {
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            blockId: "R-A-20156683-2", // Сюда вставь реальный ID полноэкранного блока из РСЯ
+            type: "fullscreen",
+			"platform": "touch"
+        });
+    });
+}
+
 monogatari.script({
 	// Точка входа в игру
 	'Start': [
@@ -236,6 +247,10 @@ monogatari.script({
 			window.sendVaelGoal('read_chapter_2');
 			return true;
 		},
+
+		((process) => {
+            showInterstitialAd(() => { process(); });
+        }),
 
 		'jump scene_3'
 	],
@@ -397,6 +412,10 @@ monogatari.script({
 			window.sendVaelGoal('read_chapter_5');
 			return true;
 		},
+
+		((process) => {
+            showInterstitialAd(() => { process(); });
+        }),
 
 		'jump scene_6'
 	],
