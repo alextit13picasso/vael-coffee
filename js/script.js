@@ -249,13 +249,16 @@ monogatari.script({
 		window.camera(60, 0, 120),
 		'h Полы моего пальто в тот же миг подались ветру, не в силах противостоять ему. Шляпа в общем-то тоже. Собрав все обратно, я вышел из узкого переулка и медленно зашагал по мокрому, широкому тротуару.',
 
-		function () {
-			window.sendVaelGoal('read_chapter_2');
-			return true;
-		},
-
-		((process) => {
-            showInterstitialAd(() => { process(); });
+		 ((process) => {
+            // 1. Сначала тихо отправляем цель в метрику
+            if (window.sendVaelGoal) {
+                window.sendVaelGoal('read_chapter_2');
+            }
+            
+            // 2. Затем вызываем полноэкранную рекламу
+            showInterstitialAd(() => { 
+                process(); // Этот шаг сработает ТОЛЬКО когда юзер закроет крестик баннера
+            });
         }),
 
 		'jump scene_3'
@@ -413,14 +416,18 @@ monogatari.script({
 		'play sound scene_5_block_8',
 		window.camera(60, 0, 120),
 		'h Она, в общем, решила уподобиться проходящим мимо людям и тоже, такое чувство что никуда не спешила, просто размеренно перелетала с дерева на дерево и оглядывалась, резко поворачивая голову то влево то вправо.',
-
-		function () {
-			window.sendVaelGoal('read_chapter_5');
-			return true;
-		},
-
-		((process) => {
-            showInterstitialAd(() => { process(); });
+		
+		// Объединяем отправку цели и вызов межстраничного баннера Яндекса
+        ((process) => {
+            // 1. Сначала тихо отправляем цель в метрику
+            if (window.sendVaelGoal) {
+                window.sendVaelGoal('read_chapter_5');
+            }
+            
+            // 2. Затем вызываем полноэкранную рекламу
+            showInterstitialAd(() => { 
+                process(); // Этот шаг сработает ТОЛЬКО когда юзер закроет крестик баннера
+            });
         }),
 
 		'jump scene_6'
