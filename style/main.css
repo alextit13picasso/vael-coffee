@@ -295,7 +295,7 @@ input[type=range]::-ms-fill-upper {}
     padding: 0 !important;
     
     /* Оставляем микрозазор в 15px между нижней строчкой и словом «ДАЛЕЕ» */
-    padding-bottom: 15px !important; 
+    padding-bottom: 65px !important; 
 
 	padding-right: 90px !important; 
     
@@ -649,4 +649,25 @@ body.in-final-scene #custom-read-more-btn {
     background-color: #ffffff !important; /* Насыщенный чистый белый цвет */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important; /* Фирменное свечение */
     transition: width 0.3s ease-out !important; /* Плавное перетекание при смене блоков */
+}
+
+/* Переписываем селектор на официальный ID Яндекса */
+#yandex_rtb_R-A-20156683-1 {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 50px !important;
+    z-index: 100 !important;
+    background-color: transparent !important; /* Реклама зальет сама, когда прогрузится */
+    overflow: hidden !important;
+}
+
+/* Оставляем отступы для текста и кнопки «Далее», чтобы они не перекрывались */
+[data-component="text-box"] {
+    bottom: 60px !important;
+}
+
+#custom-text-next-btn {
+    bottom: 65px !important;
 }
