@@ -154,6 +154,20 @@
 			</button>
 		</visual-novel>
 	</div>
+	<script>
+		// Пишем напрямую, без addEventListener — этот код сработает гарантированно
+		if (typeof ym !== 'undefined') {
+			ym(112954462, 'params', { "Vael_Debug": "1_HTML_Ready" });
+		}
+
+		// Ловим скачивание всех ресурсов (картинок/скриптов) — это оставляем как есть
+		window.addEventListener('load', function () {
+			if (typeof ym !== 'undefined') {
+				ym(112954462, 'params', { "Vael_Debug": "2_All_Assets_Downloaded" });
+			}
+		});
+	</script>
+
 </body>
 
 </html>

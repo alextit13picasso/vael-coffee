@@ -33,10 +33,19 @@ $_ready(() => {
 
 	monogatari.init('#monogatari').then(() => {
 
+		if (typeof ym !== 'undefined') {
+			ym(112954462, 'params', { "Vael_Debug": "3_Monogatari_Init_Start" });
+		} else {
+			console.error("Метрика не дожила до старта Monogatari");
+		}
+
+
 		const startBtn = document.querySelector('[data-action="start"]');
 		if (startBtn) {
 			startBtn.addEventListener('click', () => {
 				if (typeof window.sendVaelGoal === 'function') {
+					// Наш дублирующий лог-параметр (который проскочит 100%)
+					ym(112954462, 'params', { "Vael_Debug": "4_Click_Read_Pressed_Success" });
 					window.sendVaelGoal('click_read');
 				}
 			});
@@ -114,24 +123,24 @@ $_ready(() => {
 					try {
 						const totalBlocks = 44;
 						const currentLabel = monogatari.state('label') || 'scene_1';
-						
+
 						// Вытаскиваем номер блока прямо из имени файла (например, из "scene_1_block_2" достанет 2)
 						const match = asset.match(/_block_(\d+)/);
 						const stepInLabel = match ? parseInt(match[1], 10) - 1 : 0;
-						
+
 						let previousBlocksOffset = 0;
-						if (currentLabel === 'scene_2') previousBlocksOffset = 5;  
-						if (currentLabel === 'scene_3') previousBlocksOffset = 12; 
-						if (currentLabel === 'scene_4') previousBlocksOffset = 21; 
-						if (currentLabel === 'scene_5') previousBlocksOffset = 26; 
-						if (currentLabel === 'scene_6') previousBlocksOffset = 34; 
-						if (currentLabel === 'scene_7') previousBlocksOffset = 40; 
+						if (currentLabel === 'scene_2') previousBlocksOffset = 5;
+						if (currentLabel === 'scene_3') previousBlocksOffset = 12;
+						if (currentLabel === 'scene_4') previousBlocksOffset = 21;
+						if (currentLabel === 'scene_5') previousBlocksOffset = 26;
+						if (currentLabel === 'scene_6') previousBlocksOffset = 34;
+						if (currentLabel === 'scene_7') previousBlocksOffset = 40;
 
 						const absoluteCurrentStep = previousBlocksOffset + stepInLabel;
 						const progressPercent = Math.min(((absoluteCurrentStep + 1) / totalBlocks) * 100, 100);
 
 						console.log(`📊 [PROGRESS] Сцена: ${currentLabel} | Шаг: ${stepInLabel} | Абсолютный шаг: ${absoluteCurrentStep + 1}/${totalBlocks} | Прогресс: ${progressPercent.toFixed(1)}%`);
-						
+
 						// СРАЗУ ДВИГАЕМ ВИЗУАЛЬНУЮ ПОЛОСКУ В CSS, ЕСЛИ ОНА ЕСТЬ В HTML
 						const progressBar = document.getElementById('custom-progress-bar');
 						if (progressBar) {
