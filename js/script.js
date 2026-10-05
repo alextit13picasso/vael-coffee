@@ -124,40 +124,9 @@ window.camera = function (offsetX, offsetY, scalePercent) {
 	});
 })();
 
-// Чистая функция вызова нижнего баннера по доке Яндекса
-function initBottomBanner() {
-    // Даем движку новеллы 300 мс, чтобы гарантированно отрисовать <game-screen> и наш div
-    setTimeout(() => {
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({
-                blockId: "R-A-20156683-1",
-                renderTo: "yandex_rtb_R-A-20156683-1"
-            });
-        });
-    }, 300); // 300 миллисекунд задержки
-}
-
-// Функция показа полноэкранной рекламы на стыках глав
-function showInterstitialAd(callback) {
-    window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({
-            blockId: "R-A-20156683-2", // Сюда вставь реальный ID полноэкранного блока из РСЯ
-            type: "fullscreen",
-			"platform": "touch",
-			onClose: function () {
-                if (callback) callback(); // Игра продолжается только ПОСЛЕ закрытия крестика
-            },
-            onError: function () {
-                if (callback) callback(); // При ошибке сети не ломаем игру, идем дальше
-            }
-        });
-    });
-}
-
 monogatari.script({
 	// Точка входа в игру
 	'Start': [
-		() => { initBottomBanner(); },
 		function () {
 			// Если игрок начинает заново — гарантированно включаем дождь обратно
 			const canvas = document.getElementById('rainCanvas');
@@ -254,11 +223,6 @@ monogatari.script({
             if (window.sendVaelGoal) {
                 window.sendVaelGoal('read_chapter_2');
             }
-            
-            // 2. Затем вызываем полноэкранную рекламу
-            showInterstitialAd(() => { 
-                process(); // Этот шаг сработает ТОЛЬКО когда юзер закроет крестик баннера
-            });
         }),
 
 		'jump scene_3'
@@ -338,27 +302,27 @@ monogatari.script({
 		'stop sound',
 		'play sound scene_4_block_1',
 		window.camera(0, 0, 100),
-		'h Редкие прохожие, в основном под зонтами, все же имели более спешащий и несколько встревоженный вид: они спешили, иногда даже переходя на бег.',
+		'h The rare pedestrians, mostly huddled under umbrellas, looked much more hurried and somewhat anxious; they rushed along, occasionally even breaking into a run.',
 
 		'stop sound',
 		'play sound scene_4_block_2',
 		window.camera(-15, -15, 103),
-		'h Проходя под большими ветками старых каштанов они снижали темп, как бы веря, что теперь они под надежной защитой раскидистых крон, и дождевые капли им точно не страшны. А затем снова старались быстрее добежать до следующего дерева.',
+		'h Passing under the heavy branches of the old chestnut trees, they would slow their pace, as if believing they were now under the reliable protection of the spreading canopies, completely safe from the raindrops.',
 
 		'stop sound',
 		'play sound scene_4_block_3',
 		window.camera(60, 0, 120),
-		'h Я прошел до конца улицы и свернул направо, на узкую дорожку, которая больше походила на лесную тропинку чем на пешеходную дорогу.',
+		'h But then, they would quicken their steps again, eager to reach the next tree.',
 
 		'stop sound',
 		'play sound scene_4_block_4',
 		window.camera(15, 20, 106),
-		'h Там сям стояли лужи, и мелкие капли будоражили грязную воду, подбрасывая ее вверх и разбрызгивая по сторонам.',
+		'h I walked to the end of the street and turned right onto a narrow path that resembled a woodland trail more than a pedestrian walkway. Puddles lay scattered here and there, and the fine drizzle agitated the muddy water, tossing it upward and splashing it outward.',
 
 		'stop sound',
 		'play sound scene_4_block_5',
 		window.camera(-40, -20, 112),
-		'h Я почувствовал что правый мой ботинок сдался и теперь там обосновалась вполне приличная влажность. Тут машин почти не было слышно и я четко стал отличать удары капель о мокрые листья и траву, тихое, убаюкивающее шуршание.',
+		'h  I felt my right shoe finally give in, and a quite respectable dampness settled inside. Here, the hum of cars was barely audible, and I could clearly discern the strike of droplets against the wet leaves and grass—a quiet, lulling rustle.',
 
 		function () {
 			window.sendVaelGoal('read_chapter_4');
@@ -380,42 +344,42 @@ monogatari.script({
 		'stop sound',
 		'play sound scene_5_block_1',
 		window.camera(0, 0, 100),
-		'h Удивительно, но подходя ближе к парку становилось отчетливо видно, что некоторые ветки уже стали полностью голыми, потеряв свои листья. Желтые, оранжевые, серые и коричневые краски заполнили это чудесное место, они смешивались будучи чужеродными друг другу.',
+		'h Surprisingly, as I drew closer to the park, it became distinctly clear that some branches were already completely bare, having shed their leaves. Yellow, orange, gray, and brown hues filled this wonderful place, blending together despite being foreign to one another.',
 
 		'stop sound',
 		'play sound scene_5_block_2',
 		window.camera(35, -10, 107),
-		'h Редкие птички, надувшись и став пористыми, сидели на ветках, некоторые еще пытались воспроизводить какие-то свои, совершенно не вписывающиеся в общую концепцию осени мелодии.',
+		'h A few rare birds, puffed up and looking porous, sat on the branches; some were still trying to pipe their own tunes, which seemed utterly out of keeping with the overall theme of autumn.',
 
 		'stop sound',
 		'play sound scene_5_block_3',
 		window.camera(25, -15, 108),
-		'h Но именно они наполняли парк тем самым неравномерным шумом, который, смешиваясь с шумом дождя и ветра, заполнял всю вселенную.',
+		'h Yet it was these very sounds that filled the park with that uneven hum which, merging with the whisper of rain and wind, expanded to fill the entire universe.',
 
 		'stop sound',
 		'play sound scene_5_block_4',
 		window.camera(-30, 10, 105),
-		'h Было интересно наблюдать как белка, совершенно не боясь редких прохожих, пыталась раздобыть себе очередной зимний припас, молниеносно бегала от дерева к дереву.',
+		'h It was fascinating to watch a squirrel, entirely unfazed by the occasional passersby, trying to forage another winter stash as it darted lightning-fast from tree to tree.',
 
 		'stop sound',
 		'play sound scene_5_block_5',
 		window.camera(45, -25, 115),
-		'h Иногда она резво взбегала почти до самой верхушки тополя, клена, потом резко спускалась вниз, казалось она сейчас разобьется, но нет, эта рыжая молния оказывалась во сто раз проворнее самой смелой мысли и быстрее самого трезвого разума, ибо она вот уже оказывалась в десяти метрах от того места где была секунду назад.',
+		'h Now and then, it would briskly scamper almost to the very top of a poplar or a maple, then drop down sharply—it seemed as though it would surely crash, but no, this red flash proved a hundred times more agile than the boldest thought and faster than the soberest mind, for there it already was, ten meters from where it had been just a second ago.',
 
 		'stop sound',
 		'play sound scene_5_block_6',
 		window.camera(0, -35, 110),
-		'h Сорока, я давно не видел сорок! А вот она. Мокрая, тяжелая, жирная осенняя птица, она быстро маша крыльями перелетала с одного дерева на другое. Для нее как будто выключили насыщенность: она была черно белой, но тем не менее она имела свои краски.',
+		'h A magpie—I hadn\'t seen a magpie in ages! And here it was. A wet, heavy, plump autumn bird, it flew from one tree to another with quick, beating wings. It was as if someone had turned down the saturation for it: it was black and white, yet it possessed its own colors.',
 
 		'stop sound',
 		'play sound scene_5_block_7',
 		window.camera(-15, -15, 103),
-		'h Перья, даже мокрые, переливались на том скудном свету который благосклонно давало нам небо. Я невольно остановился, приглядевшись к птице.',
+		'h Its feathers, even drenched, shimmered in the meager light that the sky so graciously bestowed upon us. I couldn\'t help but stop, fixing my gaze on the bird.',
 
 		'stop sound',
 		'play sound scene_5_block_8',
 		window.camera(60, 0, 120),
-		'h Она, в общем, решила уподобиться проходящим мимо людям и тоже, такое чувство что никуда не спешила, просто размеренно перелетала с дерева на дерево и оглядывалась, резко поворачивая голову то влево то вправо.',
+		'h  It seemed to have decided to mimic the people passing by—as if it, too, was in no hurry at all, simply shifting from tree to tree in a measured way and looking about, sharply turning its head now left, now right',
 		
 		// Объединяем отправку цели и вызов межстраничного баннера Яндекса
         ((process) => {
@@ -423,11 +387,6 @@ monogatari.script({
             if (window.sendVaelGoal) {
                 window.sendVaelGoal('read_chapter_5');
             }
-            
-            // 2. Затем вызываем полноэкранную рекламу
-            showInterstitialAd(() => { 
-                process(); // Этот шаг сработает ТОЛЬКО когда юзер закроет крестик баннера
-            });
         }),
 
 		'jump scene_6'
@@ -444,32 +403,32 @@ monogatari.script({
 		'stop sound',
 		'play sound scene_6_block_1',
 		window.camera(0, 0, 100),
-		'h Я вышел к небольшому пруду в самом конце парка. Он был мелок, и через его кристальную воду было видно дно.',
+		'h I came upon a small pond at the very edge of the park. It was shallow, and through its crystalline water, the bottom was clearly visible.',
 
 		'stop sound',
 		'play sound scene_6_block_2',
 		window.camera(15, 20, 106),
-		'h Оно было полностью покрыто коричневыми листьями, что полностью повторяло весь ландшафт который меня сейчас окружал, и на удивление органично вписывалось в общую концепцию.',
+		'h It was entirely carpeted with brown leaves, mirroring the surrounding landscape perfectly and fitting into the overall scene with surprising harmony.',
 
 		'stop sound',
 		'play sound scene_6_block_3',
 		window.camera(-40, -20, 112),
-		'h Тут еще больше пахло землей и грибами, листья, заботливо сгребенные в кучки работниками парка, начали гнить, и разносили по парку какие-то свои флюиды, которые принуждали во все это влюбиться. Я почувствовал что капли дождя добрались и до моей спины…',
+		'h Here, the scent of earth and mushrooms grew even stronger; the leaves, mindfully raked into piles by the park keepers, had begun to decompose, releasing their own peculiar vapors into the air—vations that compelled you to fall in love with it all. I felt the raindrops finally reach my back…',
 
 		'stop sound',
 		'play sound scene_6_block_4',
 		window.camera(35, -10, 107),
-		'h Выйдя из парка я оказался как раз в начале того самого изумительного бульвара: неширокая полоса пешеходной дорожки с винтажными лавками справа и слева, была окружена с обеих сторон рядами старых, дряхлых кленов.',
+		'h Leaving the park, I found myself right at the beginning of that very same exquisite boulevard. A fairly narrow pedestrian path, lined with vintage benches on either side, was flanked by rows of old, decrepit maples.',
 
 		'stop sound',
 		'play sound scene_6_block_5',
 		window.camera(25, -15, 108),
-		'h Ряды эти в свою очередь обрамлялись двумя узкими асфальтными дорогами. Я медленно пошел по бульвару, и вот, вот оно: запах выпечки, свежей, столь манящей.',
+		'h These rows, in turn, were framed by two narrow asphalt roads. I walked slowly down the boulevard, and then, there it was: the smell of fresh, utterly enticing pastries.',
 
 		'stop sound',
 		'play sound scene_6_block_6',
 		window.camera(-30, 10, 105),
-		'h А сладкая глазурь! Даже не видя выпечки, я почувствовал текстуру, мякоть и вкус неповторимых синнабон, круассанов и кофе.',
+		'h And that sweet glaze! Even without seeing the baked goods, I could already feel the texture, the softness, and the taste of those incomparable cinnabons, croissants, and coffee.',
 
 		function () {
 			window.sendVaelGoal('read_chapter_6');
@@ -500,22 +459,22 @@ monogatari.script({
 		'stop sound',
 		'play sound scene_7_block_1',
 		window.camera(0, 0, 100),
-		'h Нельзя терять ни минуты, недопустимо! Только открыв дверь в кафе, услышав треск камина, я очутился в совершенно другом, таком чуждом осеннему ветру и дождю мире.',
+		'h Not a single moment could be lost—it was simply unacceptable! The instant I pushed open the café door and caught the crackle of the fireplace, I found myself in a completely different world, one utterly foreign to the autumn wind and rain.',
 
 		'stop sound',
 		'play sound scene_7_block_2',
 		window.camera(-45, 65, 115),
-		'h Уютное тепло, даже жар, налетел на меня лавиной, смутив в краску мое холодное лицо, пристыдил меня, но тут же окутал собой, снял с меня пальто, шляпу, взял мой мокрый зонт, поднял меня над полом, почти до потолка, понес по широкому просторному залу кафе, и усадил за круглый столик, как раз возле небольшого окна с подоконником, откуда открывался прекрасный вид на бульвар. ',
+		'h A cozy warmth, hot even, rushed over me like an avalanche, flushing my cold face with color; it shamed me, yet instantly enveloped me.',
 
 		'stop sound',
 		'play sound scene_7_block_3',
 		window.camera(0, 55, 110),
-		'h Мокрый, дождливый с запахом грибов.',
+		'h It slipped off my coat and hat, took my wet umbrella, and lifted me right off the floor, nearly to the ceiling, carrying me across the wide, spacious hall of the café to seat me at a round table—right by a small window with a sill that offered a beautiful view of the boulevard. Wet, rainy, and smelling of mushrooms.',
 
 		'stop sound',
 		'play sound scene_7_block_4',
 		window.camera(-75, 75, 103),
-		'h Принесли кофе.',
+		'h Coffee was brought!',
 
 		function () {
 			window.sendVaelGoal('read_chapter_7');

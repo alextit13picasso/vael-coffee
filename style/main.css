@@ -87,10 +87,10 @@
     box-shadow: none !important;
     cursor: pointer !important;
     display: block !important;
-    
+
     width: 840px !important;  
-    height: 240px !important; 
-    max-width: 80% !important; /* Безопасный размер под узкие экраны смартфонов */
+    height: 180px !important; 
+    max-width: 100% !important; /* Безопасный размер под узкие экраны смартфонов */
     
     background-image: url('../assets/images/start_button.webp') !important; 
     background-size: contain !important;
@@ -357,35 +357,6 @@ input[type=range]::-ms-fill-upper {}
     left: 0 !important;
 }
 
-/* 4. КНОПКА-КАРТИНКА (УВЕЛИЧЕНА В 3 РАЗА) */
-[data-screen="main"] button[data-action="start"] {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    cursor: pointer !important;
-    display: block !important;
-    
-    /* Размеры увеличены ровно в 3 раза (было 280х80, стало 840х240) */
-    width: 840px !important;  
-    height: 240px !important; 
-    
-    /* Максимальные ограничения для корректного сжатия на мелких экранах */
-    max-width: 85% !important; 
-    
-    /* Картинка старта из assets/images/ */
-    background-image: url('../assets/images/start_button.webp') !important; 
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-
-    /* Полностью убираем дефолтный текст */
-    color: transparent !important;
-    font-size: 0 !important;
-    text-shadow: none !important;
-    
-    transition: transform 0.2s ease, opacity 0.2s ease !important;
-}
-
 /* Мягкий отклик кнопки при тапе */
 [data-screen="main"] button[data-action="start"]:active {
     transform: scale(0.95) !important;
@@ -440,37 +411,24 @@ input[type=range]::-ms-fill-upper {}
     /* Фиксируем строго вверху по центру игрового экрана */
     position: absolute !important;
     top: 20px !important; /* Отступ от верхнего края */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    align-self: center;
     
     /* Размеры под твою картинку */
     width: 300px !important;
-    height: 120px !important;
+    height: 160px !important;
     
     background-image: url('../assets/images/read_more_button.webp') !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
+    
     background-position: center !important;
     background-color: transparent !important;
     
     border: none !important;
-    box-shadow: none !important;
     cursor: pointer !important;
     outline: none !important;
     
     /* Выводим на самый верхний слой внутри экрана игры */
     z-index: 99999 !important;
     display: block !important;
-    
-    transition: opacity 0.2s ease, transform 0.2s ease !important;
-}
-
-/* Эффекты отклика при нажатии */
-#custom-read-more-btn:hover {
-    opacity: 0.9 !important;
-}
-#custom-read-more-btn:active {
-    transform: translateX(-50%) scale(0.95) !important;
 }
 
 [data-screen="game"] {
@@ -478,7 +436,6 @@ input[type=range]::-ms-fill-upper {}
 }
 
 [data-screen="game"] button,
-#custom-read-more-btn,
 #custom-next-btn {
     pointer-events: auto !important;
 }
