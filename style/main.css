@@ -1,0 +1,673 @@
+/**
+ * =============================================================================
+ * This is the file where all your styling should go in.
+ * Instead of modifying the styles found in the monogatari.css file or others,
+ * you should overwrite those styles in this file.
+ *
+ * The CSS selectors shown are not an extensive list but they are the most
+ * common you might want to change. To find what other elements are available,
+ * you can take a look at the monogatari.css file or use your browser's dev
+ * tools to inspect the elements.
+ * =============================================================================
+**/
+
+/**
+ * ===========================
+ * General Styling
+ * ===========================
+**/
+@import url('https://googleapis.com');
+
+/* =============================================================================
+   ОГРАНИЧЕНИЕ 9:16 ТОЛЬКО ДЛЯ БОЛЬШИХ ЭКРАНОВ (ПК И НОУТБУКИ)
+   ============================================================================= */
+@media screen and (min-width: 769px) {
+    body {
+        background-color: #0d0d0d !important; /* Угольно-черный фон по бокам на ПК */
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100vh !important;
+        width: 100vw !important;
+        overflow: hidden !important;
+    }
+
+    #monogatari {
+        position: relative !important;
+        margin: 0 auto !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        
+        aspect-ratio: 9 / 16 !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        width: auto !important;
+        
+        overflow: hidden !important;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8) !important;
+    }
+}
+
+/* =============================================================================
+   ИДЕАЛЬНЫЙ СТАРТОВЫЙ ЭКРАН ДЛЯ ВСЕХ УСТРОЙСТВ (И ПК, И МОБИЛКИ)
+   ============================================================================= */
+
+@media screen and (max-aspect-ratio: 9/16) {
+    [data-screen="main"] {
+        background-size: auto 125% !important;
+    }
+}
+
+/* Дополнительный фикс: если экран слишком вытянутый, фон не должен оголять края */
+@media screen and (max-aspect-ratio: 9/16) {
+    [data-screen="main"] {
+        background-size: auto 110% !important;
+    }
+}
+
+/* Жесткая центровка кнопки «Читать» ровно по центру на любом экране */
+[data-screen="main"] [data-component="main-menu"] {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
+    position: absolute !important;
+    left: 0 !important;
+    width: 100% !important;
+    
+    /* Вместо процентов от низа используем железное выравнивание по центру */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+}
+
+/* Сама кнопка-картинка */
+[data-screen="main"] button[data-action="start"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    display: block !important;
+    
+    width: 840px !important;  
+    height: 240px !important; 
+    max-width: 80% !important; /* Безопасный размер под узкие экраны смартфонов */
+    
+    background-image: url('../assets/images/start_button.webp') !important; 
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+    text-shadow: none !important;
+    
+    transition: transform 0.2s ease !important;
+}
+
+/* Simple Button styles*/
+button {
+
+}
+
+/* Simple Button Style on Hover */
+button:hover {
+
+}
+
+/* General Styling for Menu Screens */
+[data-screen] {
+
+}
+
+/**
+ * ===========================
+ * Main Menu Styling
+ * ===========================
+**/
+
+/* Main Menu Styling */
+[data-screen="main"] {}
+
+/* Main Menu Buttons Styling */
+[data-screen="main"] button {}
+
+/**
+ * ===========================
+ * Save and Load Menus Styling
+ * ===========================
+**/
+
+/* Slots Style */
+[data-component="save-slot"] figure {}
+
+/* Slot's Image Style */
+[data-component="save-slot"] img {}
+
+/* Slots Title Style */
+[data-component="save-slot"] figcaption {}
+
+/* Slots Delete Button Style */
+[data-component="save-slot"] button {}
+
+/**
+ * ===========================
+ * Game Elements Styling
+ * ===========================
+**/
+
+/* Choice Buttons style */
+[data-component="choice-container"] button {}
+
+/* Choice Button Style on Hover */
+[data-component="choice-container"] button:hover {}
+
+/* Character Name Style */
+[data-ui="who"] {}
+
+/* Style for Centered Text */
+[data-component="centered-dialog"] {}
+
+/* Character Images Styles */
+[data-screen="game"] [data-character] {}
+
+/* Other Images Styles */
+[data-screen="game"] [data-image] {}
+
+/**
+ * ===========================
+ * Quick Menu Styling
+ * ===========================
+**/
+
+/* These styles are applied to the Mobile version of the Quick Menu */
+
+/* Quick Menu Style */
+[data-component="quick-menu"] {
+
+}
+
+/* Quick Menu Buttons Style */
+[data-component="quick-menu"] span {
+
+}
+
+/* Quick Menu Buttons Style on Hover */
+[data-component="quick-menu"] span:hover {}
+
+/* Quick Menu Buttons Icon Style */
+[data-component="quick-menu"]>span>.fa {}
+
+/**
+ * ===========================
+ * Range Styling
+ * ===========================
+**/
+
+/* Use the background property to set a color for these */
+input[type=range]:focus::-webkit-slider-runnable-track {}
+
+input[type=range]::-webkit-slider-runnable-track {}
+
+input[type=range]:focus::-ms-fill-upper {}
+
+input[type=range]:focus::-ms-fill-lower {}
+
+input[type=range]::-moz-range-track {}
+
+input[type=range]::-ms-fill-lower {}
+
+input[type=range]::-ms-fill-upper {}
+
+/** Medium Screens, Phablets (601px) **/
+@media screen and (min-width: 37.56255em) {
+	/* Styles for the desktop version of the Quick Menu */
+
+	/* Quick Menu Style */
+	[data-component="quick-menu"] {}
+
+	/* Quick Menu Buttons Style */
+	[data-component="quick-menu"] span {}
+
+	/* Quick Menu Buttons Style on Hover */
+	[data-component="quick-menu"] span:hover {}
+}
+
+/** Medium Devices, Tablets (992px)**/
+@media screen and (min-width: 62em) {}
+
+/** HD Screen, Large Devices, Wide Screens, Desktop (1200px) **/
+@media screen and (min-width: 75em) {}
+
+/** Full HD Screen, Large Devices, Wide Screens, Large Desktops (1920px) **/
+@media screen and (min-width: 120em) {}
+
+/** Retina Screen , Large Devices, Wide Screens(2560px) **/
+@media screen and (min-width: 160em) {}
+
+/** 4k Screens, Large Devices, Wide Screens (3840px) **/
+@media screen and (min-width: 240em) {}
+
+/** 5k Screens, Large Devices, Wide Screens (5000px) **/
+@media screen and (min-width: 312.5em) {}
+
+/** 8k Screens, Large Devices, Wide Screens (8000px) **/
+@media screen and (min-width: 500em) {}
+/* =============================================================================
+   ФИНАЛЬНЫЙ СБРОС СКРЫТЫХ ОТСТУПОВ MONOGATARI: ТЕКСТ РЯДОМ С "ДАЛЕЕ"
+   ============================================================================= */
+
+/* 1. Самый внешний контейнер (родоначальник коробки) */
+[data-component="text-box"] {
+    position: absolute !important;
+    left: 25px !important;  
+    right: 25px !important; 
+    
+    /* Опускаем внешнюю коробку в самый низ, оставляя 25px зазора под буквы "ДАЛЕЕ" */
+    bottom: 45px !important; 
+    height: auto !important;
+
+	max-height: none !important;
+    
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important; 
+    overflow-y: auto !important; 
+    pointer-events: none !important; 
+    
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important; /* Давит всё содержимое к самому низу коробки */
+}
+
+/* 2. Уничтожаем внутренний скрытый отступ у промежуточного блока Monogatari */
+[data-component="text-box"] [data-content="text"] {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+}
+
+/* 3. Внутренний контейнер самих букв (шрифт Cormorant + финальный прижим) */
+[data-component="text-box"] [data-ui="say"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    /* Оставляем микрозазор в 15px между нижней строчкой и словом «ДАЛЕЕ» */
+    padding-bottom: 65px !important; 
+
+	padding-right: 90px !important; 
+    
+    text-align: left !important; 
+    align-items: flex-start !important;
+    width: 100% !important; 
+	box-sizing: border-box !important;
+    pointer-events: auto !important; 
+
+    /* Твои шрифты и цвет */
+    font-family: 'Cormorant Garamond', serif !important;
+    color: #C9BFB3 !important; 
+    font-size: 1.05rem !important; 
+    line-height: 1.35 !important; 
+    
+    --text-color: #C9BFB3 !important; 
+
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 
+                 0 2px 4px rgba(0, 0, 0, 0.8), 
+                 0 4px 12px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* ПОЛНОСТЬЮ СКРЫВАЕМ ВЕРХНЮЮ ПАНЕЛЬ УПРАВЛЕНИЯ */
+[data-component="quick-menu"] {
+    display: none !important;
+}
+
+/* 1. ВЫСТАВЛЯЕМ АРТ-ЗАСТАВКУ НА СТАРТОВЫЙ ЭКРАН */
+[data-screen="main"] {
+    background-color: #000000 !important;
+    
+    /* Подключаем фоновое изображение из папки assets/images/ */
+    background-image: url('../assets/images/start_screen_back.webp') !important; 
+    background-position: center center !important; /* Центрирует картинку */
+    background-repeat: no-repeat !important;
+    
+    /* object-fit аналог для бэкграунда с жестким скейлом 110% */
+    background-size: 125% auto !important; 
+}
+
+/* 2. ЖЕСТКО ВЫРЕЗАЕМ ВСЕ ЛИШНИЕ КНОПКИ (Загрузить, Настройки, Помощь) */
+[data-screen="main"] [data-component="main-menu"] button:not([data-action="start"]) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 3. ПОЗИЦИОНИРОВАНИЕ КОНТЕЙНЕРА СТАРТОВОЙ КНОПКИ */
+[data-screen="main"] [data-component="main-menu"] {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: absolute !important;
+    bottom: 25vh !important; /* Высота кнопки от низа (подкрути, если перекроет арт) */
+    width: 100% !important;
+    left: 0 !important;
+}
+
+/* 4. КНОПКА-КАРТИНКА (УВЕЛИЧЕНА В 3 РАЗА) */
+[data-screen="main"] button[data-action="start"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    display: block !important;
+    
+    /* Размеры увеличены ровно в 3 раза (было 280х80, стало 840х240) */
+    width: 840px !important;  
+    height: 240px !important; 
+    
+    /* Максимальные ограничения для корректного сжатия на мелких экранах */
+    max-width: 85% !important; 
+    
+    /* Картинка старта из assets/images/ */
+    background-image: url('../assets/images/start_button.webp') !important; 
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+
+    /* Полностью убираем дефолтный текст */
+    color: transparent !important;
+    font-size: 0 !important;
+    text-shadow: none !important;
+    
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+}
+
+/* Мягкий отклик кнопки при тапе */
+[data-screen="main"] button[data-action="start"]:active {
+    transform: scale(0.95) !important;
+}
+
+/* Вытаскиваем черную шторку поверх слоя с дождем */
+[data-component="shadow-layer"], 
+.shadow-layer,
+[data-ui="transition"] {
+    z-index: 5 !important;
+}
+
+/* ЗАДНИЙ ПЛАН (Плавный параллакс через GPU) */
+[data-screen="game"] [data-image*="_back"] {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important; 
+    z-index: 1 !important;
+    
+    transform-origin: center center !important;
+
+    /* Плавность фона завязана на transform */
+    transition: transform 0.1s ease-in-out !important;
+    will-change: transform !important; 
+}
+
+/* ПЕРЕДНИЙ ПЛАН (Персонаж в шляпе — БЕЗ ОБРЕЗОК) */
+[data-screen="game"] [data-image*="_front"] {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: 2 !important;
+
+    /* Возвращаем твою родную привязку, чтобы левый край не резался */
+    transform-origin: left bottom !important;
+
+    /* Плавность персонажа переносим на object-position и transform */
+    transition: object-position 0.2s ease-in-out, transform 0.1s ease-in-out !important;
+    will-change: object-position, transform !important;
+
+	object-position: calc(50% - 160px) calc(50% + 480px) !important;
+	scale: 1.0;
+}
+/* =============================================================================
+   КНОПКА-КАРТИНКА "ЧИТАТЬ ЕЩЕ" ВНУТРИ ИГРОВОГО ЭКРАНА
+   ============================================================================= */
+
+#custom-read-more-btn {
+    /* Фиксируем строго вверху по центру игрового экрана */
+    position: absolute !important;
+    top: 20px !important; /* Отступ от верхнего края */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    
+    /* Размеры под твою картинку */
+    width: 300px !important;
+    height: 120px !important;
+    
+    background-image: url('../assets/images/read_more_button.webp') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-color: transparent !important;
+    
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    outline: none !important;
+    
+    /* Выводим на самый верхний слой внутри экрана игры */
+    z-index: 99999 !important;
+    display: block !important;
+    
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Эффекты отклика при нажатии */
+#custom-read-more-btn:hover {
+    opacity: 0.9 !important;
+}
+#custom-read-more-btn:active {
+    transform: translateX(-50%) scale(0.95) !important;
+}
+
+[data-screen="game"] {
+    pointer-events: none !important;
+}
+
+[data-screen="game"] button,
+#custom-read-more-btn,
+#custom-next-btn {
+    pointer-events: auto !important;
+}
+
+/* =============================================================================
+   ФИНАЛЬНАЯ КНОПКА "ДАЛЕЕ" (ПОСТОЯННЫЙ НАСЫЩЕННЫЙ ЦВЕТ И ГЛУБОКОЕ СВЕЧЕНИЕ)
+   ============================================================================= */
+#custom-text-next-btn {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    
+    width: 100% !important;
+    height: 50px !important; 
+    background: transparent !important; 
+    
+    display: flex !important;
+    justify-content: flex-end !important; 
+    align-items: flex-end !important;    
+    box-sizing: border-box !important;
+    
+    padding-right: 25px !important;  
+    padding-bottom: 25px !important; 
+
+    /* Твой фирменный нуарный стиль шрифта */
+    color: #C9BFB3 !important; 
+    font-family: "Georgia", "Times New Roman", serif !important; 
+    font-size: 14px !important;
+    letter-spacing: 6px !important; 
+    text-transform: uppercase !important;
+    font-weight: 300 !important;
+    
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    
+    /* УБИРАЕМ СИНЕЕ СВЕЧЕНИЕ И КОНТУРЫ ПРИ КЛИКЕ И ФОКУСЕ */
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important; /* Для Chrome/Safari на мобилках */
+    -webkit-focus-ring-color: transparent !important;
+    
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+    text-shadow: 0 0 12px rgba(201, 191, 179, 0.6) !important;
+}
+
+/* Полная фиксация визуала без изменений при взаимодействиях */
+#custom-text-next-btn:hover,
+#custom-text-next-btn:active,
+#custom-text-next-btn:focus {
+    color: #C9BFB3 !important;
+    text-shadow: 0 0 12px rgba(201, 191, 179, 0.6) !important;
+    outline: none !important;
+    background: transparent !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+/* =============================================================================
+   ЦЕНТРАЛЬНАЯ КНОПКА ФИНАЛА (АБСОЛЮТНЫЙ КОРНЕВОЙ ЦЕНТР ДЛЯ MONOGATARI)
+   ============================================================================= */
+
+#custom-final-boosty-btn {
+    position: absolute !important;
+    
+    /* Жесткая математическая центровка по осям X и Y относительно #monogatari */
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; 
+    
+    /* Пропорциональные размеры под мобильный экран */
+    width: 280px !important; 
+    height: auto !important;
+    max-width: 80% !important; 
+    
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    outline: none !important;
+    
+    /* Поднимаем над абсолютно всеми внутренними шторками и экранами игры */
+    z-index: 99999999 !important;
+    
+    /* Изначально скрыта, JS переключит на block */
+    display: none; 
+    
+    -webkit-tap-highlight-color: transparent !important;
+    transition: transform 0.1s ease !important;
+}
+
+/* Картинка внутри кнопки */
+#custom-final-boosty-btn img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    pointer-events: none !important;
+    display: block !important;
+}
+
+/* Отклик при тапе */
+#custom-final-boosty-btn:active {
+    transform: translate(-50%, -50%) scale(0.95) !important;
+}
+
+/* Принудительное отображение в финальной сцене, перебивающее любые запреты движка */
+body.in-final-scene #custom-final-boosty-btn {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* ЖЕСТКОЕ СЛЕДУЮЩЕЕ СКРЫТИЕ ИНТЕРФЕЙСА В ФИНАЛЕ */
+body.in-final-scene [data-component="text-box"],
+body.in-final-scene #custom-text-next-btn,
+body.in-final-scene #custom-read-more-btn {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+/* Жестко растягиваем финальный арт сцены на весь экран без черных полос */
+[data-scene="final_cover"] {
+    background-size: cover !important;
+    background-position: center center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ЖЕЛЕЗОБЕТОННЫЙ РАСПОР ДЛЯ ИГРОВОГО ЭКРАНА */
+[data-screen="game"], 
+.game-screen {
+    /* Насильно делаем экран чуть шире фрейма Tilda/Iframe */
+    width: 102% !important; 
+    max-width: 102% !important;
+    min-width: 102% !important;
+
+    /* Смещаем его слегка влево, чтобы правый бок залез с запасом */
+    left: -1% !important; 
+    
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Фикс для самого корня отображения */
+#monogatari {
+    background-color: transparent !important;
+}
+
+/* Серый полупрозрачный трек-подложка над текстовым окном */
+#custom-progress-container {
+    position: absolute !important;
+    top: 0px; /* Прижимаем строго к верхнему краю текстовой области */
+    left: 0 !important;
+    width: 100% !important;
+    height: 4px !important; /* Тонкая, изящная нуарная линия */
+    background: rgba(255, 255, 255, 0.15) !important; 
+    z-index: 999999 !important; /* Железно поверх визуальных слоев */
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Белая заполняющая линия прогресса с глубоким свечением */
+#custom-progress-bar {
+    width: 0%; /* На старте пустая */
+    height: 100% !important;
+    background-color: #ffffff !important; /* Насыщенный чистый белый цвет */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important; /* Фирменное свечение */
+    transition: width 0.3s ease-out !important; /* Плавное перетекание при смене блоков */
+}
+
+/* Переписываем селектор на официальный ID Яндекса */
+#yandex_rtb_R-A-20156683-1 {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 50px !important;
+    z-index: 100 !important;
+    background-color: transparent !important; /* Реклама зальет сама, когда прогрузится */
+    overflow: hidden !important;
+}
+
+/* Оставляем отступы для текста и кнопки «Далее», чтобы они не перекрывались */
+[data-component="text-box"] {
+    bottom: 60px !important;
+}
+
+#custom-text-next-btn {
+    bottom: 65px !important;
+}
