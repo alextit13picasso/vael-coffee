@@ -159,7 +159,7 @@ monogatari.script({
 		'stop sound',
 		'play sound scene_1_block_4',
 		window.camera(20, 90, 120),
-		'h They filled every inch of space between heaven and earth, until it was impossible to tell with any certainty where the sky began and where it ended. ',
+		'h They filled every inch of space between heaven and earth, until it was impossible to tell with any certainty where the sky began and where it ended.',
 
 		'stop sound',
 		'play sound scene_1_block_5',
