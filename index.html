@@ -93,16 +93,6 @@
 	<script src="./js/rain.js"></script>
 
 	<script src="js/metrika.js"></script>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://googletagmanager.com"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-
-		gtag('config', 'G-ZB7CPLCFRW');
-	</script>
-
 </head>
 
 <body>
@@ -131,7 +121,6 @@
 				</div>
 				<button id="custom-read-more-btn" data-action="open-club"></button>
 				<button id="custom-text-next-btn">Next</button>
-				<div id="yandex_rtb_R-A-20156683-1"></div>
 			</game-screen>
 			<gallery-screen></gallery-screen>
 			<credits-screen></credits-screen>
@@ -144,20 +133,6 @@
 			</button>
 		</visual-novel>
 	</div>
-	<script>
-		// Пишем напрямую, без addEventListener — этот код сработает гарантированно
-		if (typeof ym !== 'undefined') {
-			ym(112954462, 'params', { "Vael_Debug": "1_HTML_Ready" });
-		}
-
-		// Ловим скачивание всех ресурсов (картинок/скриптов) — это оставляем как есть
-		window.addEventListener('load', function () {
-			if (typeof ym !== 'undefined') {
-				ym(112954462, 'params', { "Vael_Debug": "2_All_Assets_Downloaded" });
-			}
-		});
-	</script>
-
 </body>
 
 </html>

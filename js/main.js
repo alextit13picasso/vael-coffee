@@ -32,25 +32,6 @@ $_ready(() => {
 	// 2. Inside the $_ready function:
 
 	monogatari.init('#monogatari').then(() => {
-
-		if (typeof ym !== 'undefined') {
-			ym(112954462, 'params', { "Vael_Debug": "3_Monogatari_Init_Start" });
-		} else {
-			console.error("Метрика не дожила до старта Monogatari");
-		}
-
-
-		const startBtn = document.querySelector('[data-action="start"]');
-		if (startBtn) {
-			startBtn.addEventListener('click', () => {
-				if (typeof window.sendVaelGoal === 'function') {
-					// Наш дублирующий лог-параметр (который проскочит 100%)
-					ym(112954462, 'params', { "Vael_Debug": "4_Click_Read_Pressed_Success" });
-					window.sendVaelGoal('click_read');
-				}
-			});
-		}
-
 		// === ЖЕЛЕЗНЫЙ ИНЖЕКТОР ФИНАЛЬНОЙ КНОПКИ В КОРЕНЬ ===
 		const finalBoostyBtn = document.getElementById('custom-final-boosty-btn');
 		if (finalBoostyBtn) {
