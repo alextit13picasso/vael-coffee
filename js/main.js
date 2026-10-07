@@ -66,7 +66,7 @@ $_ready(() => {
 				}
 
 				// 2. Открываем твою прямую ссылку на Boosty
-				window.open('https://boosty.to/vael', '_blank');
+				window.open('https://alextit13.itch.io/', '_blank');
 			});
 		}
 
@@ -91,7 +91,7 @@ $_ready(() => {
 				}
 
 				// 2. Открываем прямую ссылку на твой Boosty в новой вкладке
-				window.open('https://boosty.to/vael', '_blank');
+				window.open('https://alextit13.itch.io/', '_blank');
 			});
 		}
 
