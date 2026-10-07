@@ -1,13 +1,14 @@
-(function(m,e,t,r,i,k,a){
-    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=false,k.src=r,a.parentNode.insertBefore(k,a)
-})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112954462', 'ym');
+// Функция отправки событий, которую вызывает ваш NovelManager
+function SendGoalToTilda(goalId) {
+    if (!goalId) return;
 
-window.ym(112954462, 'init', {
-    clickmap:true,
-    trackLinks:true,
-    accurateTrackBounce:true,
-    triggerEvent:true
-});
+    console.log("[GA4 АНАЛИТИКА] Отправка события: " + goalId);
+
+    // Шлем кастомное событие напрямую в Google Analytics
+    if (typeof gtag === 'function') {
+        gtag('event', goalId, {
+            'event_category': 'novel_progress',
+            'event_label': goalId
+        });
+    }
+}
