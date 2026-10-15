@@ -489,15 +489,6 @@ monogatari.script({
 		function () {
 			// Скрываем текстовое поле и кнопку "Далее" через класс body
 			document.body.classList.add('in-final-scene');
-
-			// Включаем отображение кнопки Boosty СТРОГО ПОСЛЕ команды 'clear'
-			const finalBtn = document.getElementById('custom-final-boosty-btn');
-			if (finalBtn) {
-				finalBtn.style.setProperty('display', 'block', 'important');
-				console.log("🎯 [УСПЕХ] Финальная кнопка принудительно отображена в DOM.");
-			} else {
-				console.error("❌ [КРИТ] Элемент #custom-final-boosty-btn не найден на странице!");
-			}
 			return true;
 		},
 
@@ -602,6 +593,5 @@ monogatari.assets('images', {
 
 	// Сцена Финал
 	'final_cover': 'final_scene_cover.webp',
-	'final_button_asset': 'final_button.webp',
 });
 

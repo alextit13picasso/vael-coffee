@@ -32,25 +32,6 @@ $_ready(() => {
 	// 2. Inside the $_ready function:
 
 	monogatari.init('#monogatari').then(() => {
-		// === ЖЕЛЕЗНЫЙ ИНЖЕКТОР ФИНАЛЬНОЙ КНОПКИ В КОРЕНЬ ===
-		const finalBoostyBtn = document.getElementById('custom-final-boosty-btn');
-		if (finalBoostyBtn) {
-			// Навешиваем только ОДИН слушатель клика
-			finalBoostyBtn.addEventListener('click', (event) => {
-				event.stopPropagation(); // Останавливаем всплытие события в движке
-
-				console.log("🖱️ [ФИНАЛ] Нажата центральная кнопка. Переход на Boosty...");
-
-				// 1. Отправляем финальную метрику вступления в клуб (СТРОГО ОДИН РАЗ)
-				if (typeof window.sendVaelGoal === 'function') {
-					window.sendVaelGoal('click_join_private_club');
-				}
-
-				// 2. Открываем твою прямую ссылку на Boosty
-				window.open('https://alextit13.itch.io/', '_blank');
-			});
-		}
-
 		// === ОБРАБОТКА КЛИКА ПО ПОЛНОШИРИННОЙ КНОПКЕ "ДАЛЕЕ" ===
 		const textNextBtn = document.getElementById('custom-text-next-btn');
 		if (textNextBtn) {
@@ -60,22 +41,6 @@ $_ready(() => {
 				monogatari.proceed();
 			});
 		}
-
-		const readMoreBtn = document.getElementById('custom-read-more-btn');
-		if (readMoreBtn) {
-			readMoreBtn.addEventListener('click', () => {
-				console.log("🖱️ [КЛИК] Переход в клуб по кнопке 'Читать еще'");
-
-				// 1. Отправляем событие клика для Яндекс.Метрики наружу в Tilda
-				if (window.parent && window.parent.postMessage) {
-					window.sendVaelGoal('click_private_club');
-				}
-
-				// 2. Открываем прямую ссылку на твой Boosty в новой вкладке
-				window.open('https://alextit13.itch.io/', '_blank');
-			});
-		}
-
 
 		console.log("🚀 [ПАНДОРА-АВТОМАТ] Активация сквозного слежения за плеерами...");
 
@@ -130,8 +95,6 @@ $_ready(() => {
 					} catch (progressError) {
 						console.log("❌ Ошибка расчета шага: " + progressError.message);
 					}
-					// === КОНЕЦ БЛОКА РАСЧЕТА ПРОГРЕССА ===
-
 
 					if (duration && duration > 0) {
 						const totalWaitTime = (duration + 0.3) * 1000; // Длина mp3 + 300мс пауза

@@ -493,61 +493,6 @@ input[type=range]::-ms-fill-upper {}
     background: transparent !important;
     -webkit-tap-highlight-color: transparent !important;
 }
-/* =============================================================================
-   ЦЕНТРАЛЬНАЯ КНОПКА ФИНАЛА (АБСОЛЮТНЫЙ КОРНЕВОЙ ЦЕНТР ДЛЯ MONOGATARI)
-   ============================================================================= */
-
-#custom-final-boosty-btn {
-    position: absolute !important;
-    
-    /* Жесткая математическая центровка по осям X и Y относительно #monogatari */
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important; 
-    
-    /* Пропорциональные размеры под мобильный экран */
-    width: 280px !important; 
-    height: auto !important;
-    max-width: 80% !important; 
-    
-    background: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    cursor: pointer !important;
-    outline: none !important;
-    
-    /* Поднимаем над абсолютно всеми внутренними шторками и экранами игры */
-    z-index: 99999999 !important;
-    
-    /* Изначально скрыта, JS переключит на block */
-    display: none; 
-    
-    -webkit-tap-highlight-color: transparent !important;
-    transition: transform 0.1s ease !important;
-}
-
-/* Картинка внутри кнопки */
-#custom-final-boosty-btn img {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-    pointer-events: none !important;
-    display: block !important;
-}
-
-/* Отклик при тапе */
-#custom-final-boosty-btn:active {
-    transform: translate(-50%, -50%) scale(0.95) !important;
-}
-
-/* Принудительное отображение в финальной сцене, перебивающее любые запреты движка */
-body.in-final-scene #custom-final-boosty-btn {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-}
 
 /* ЖЕСТКОЕ СЛЕДУЮЩЕЕ СКРЫТИЕ ИНТЕРФЕЙСА В ФИНАЛЕ */
 body.in-final-scene [data-component="text-box"],
@@ -614,5 +559,5 @@ body.in-final-scene #custom-read-more-btn {
 }
 
 #custom-text-next-btn {
-    bottom: 65px !important;
+    bottom: 25px !important;
 }
